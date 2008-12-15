@@ -19,10 +19,7 @@
 #define __BATTLEFIELD_H
 
 #include <list>
-#include "param.h"
 #include "message.h"
-#include "sprite.h"
-#include "spritecollection.h"
 #include "lifebar.h"
 #include "foreground.h"
 

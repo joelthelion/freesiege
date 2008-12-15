@@ -18,11 +18,9 @@
 #ifndef __UNIT_H
 #define __UNIT_H
 
-#include <param.h>
 #include "message.h"
-#include "utils.h"
-#include "sprite.h"
 #include "spritecollection.h"
+#include "utils.h"
 
 class Unit {
 public:

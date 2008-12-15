@@ -19,9 +19,7 @@
 #define __SPRITE__COLLECTION_H
 
 #include <map>
-#include <string>
 #include "anim.h"
-#include "sprite.h"
 
 class SpriteCollection {
 friend std::ostream &operator<<(std::ostream &os,const SpriteCollection &collection);

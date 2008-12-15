@@ -18,8 +18,6 @@
 #ifndef __LIFEBAR_H
 #define __LIFEBAR_H
 
-#include "param.h"
-#include "sprite.h"
 #include "spritecollection.h"
 
 class LifeBar {

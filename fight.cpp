@@ -15,15 +15,8 @@
 //	You should have received a copy of the GNU General Public License
 //	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-#include <iostream>
-#include <string>
-
 #include "background.h"
 #include "battlefield.h"
-#include "spritecollection.h"
-#include "lifebar.h"
-#include "param.h"
-#include "foreground.h"
 #include "utils.h"
 
 SDL_mutex *counter_reset_mutex;
