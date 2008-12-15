@@ -17,11 +17,6 @@
 //
 #include "archer.h"
 
-#include "lifebar.h"
-
-#include <cassert>
-#include <cmath>
-
 #define ARCHER_LIFE 30
 #define ARCHER_ATTACK 5
 #define ARCHER_PLAYER_DAMAGE 5

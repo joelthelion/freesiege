@@ -17,9 +17,6 @@
 //
 #include "arrow.h"
 
-#include "spritecollection.h"
-#include <cassert>
-
 #define ARROW_X 20
 #define ARROW_Y 24
 

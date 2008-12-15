@@ -27,6 +27,8 @@
 #include <string>
 #include <cstdlib>
 #include <stack>
+#include <sstream>
+#include <cassert>
 
 #ifdef WIN32
 	#include <windows.h>

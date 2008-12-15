@@ -17,11 +17,6 @@
 //
 #include "anim.h"
 
-#include <iostream>
-#include <sstream>
-#include "utils.h"
-
-
 //Cycle iterator
 Anim::CycleIterator::CycleIterator(const SpriteVector *vect,float speed) {
 	this->speed=speed;
