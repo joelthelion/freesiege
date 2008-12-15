@@ -1,2 +1,15 @@
 CVS
-
+.cvsignore
+Makefile
+build
+bin
+tags
+fight
+freesiege
+gmon.out
+*.swp
+*.o
+CMakeCache.txt
+CMakeFiles
+*.cmake
+packaging
