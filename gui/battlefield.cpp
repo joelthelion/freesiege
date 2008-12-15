@@ -18,11 +18,13 @@
 #include "battlefield.h"
 
 #include <string>
-#include "unit.h"
+#include <algorithm>
 #include "param.h"
 #include "utils.h"
-#include "plant.h"
 #include "collisionmatrix.h"
+
+#include "unit.h"
+#include "plant.h"
 
 BattleField::BattleField(const SpriteCollection *spr_coll,LifeBar *lifebar1,LifeBar *lifebar2,Foreground * foreground) {
 	this->spr_coll=spr_coll;

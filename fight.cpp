@@ -24,6 +24,7 @@
 #include "lifebar.h"
 #include "param.h"
 #include "foreground.h"
+#include "utils.h"
 
 SDL_mutex *counter_reset_mutex;
 int valid_fps;

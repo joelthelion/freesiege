@@ -15,35 +15,38 @@
 //	You should have received a copy of the GNU General Public License
 //	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-#ifndef __UNIT_H
-#define __UNIT_H
+#ifndef __BATTLEFIELD_H
+#define __BATTLEFIELD_H
 
+#include <list>
 #include "param.h"
 #include "message.h"
-#include "utils.h"
 #include "sprite.h"
 #include "spritecollection.h"
+#include "lifebar.h"
+#include "foreground.h"
 
-class Unit {
+class BattleField {
 public:
-	static Unit *spawn(UNIT_ID name,const SpriteCollection *spr_coll,PLAYER player,float x=0);
+	BattleField(const SpriteCollection *spr_coll,LifeBar *lifebar1,LifeBar *lifebar2,Foreground * foreground);
+	~BattleField();
 	
-	Unit(PLAYER player);
-	virtual ~Unit();
-	virtual void post_message(MessageQueue *mess_queue);
-	virtual void handle_message(const Message &mess,MessageQueue *mess_queue);
-	virtual void draw();
-	bool is_dead() const;
-	PLAYER get_player() const;
-	bool can_collide() const;
-	
-	std::string name;
-	float x,y;
-	float w,h;
-protected:
-	PLAYER player;
-	bool dead;
-	bool collide;
+	void draw();
+	void spawn(UNIT_ID name,PLAYER player,float x=0);
+private:
+	typedef std::list<Unit*> Units;
+	Units units;
+
+	LifeBar *lifebar1;
+	LifeBar *lifebar2;
+
+	const SpriteCollection *spr_coll;
+	MessageQueue *current_mess_queue;
+
+	int frame_skip_count;
+	Sprite *bit_castle;
+
+	Foreground * foreground;
 };
 
 #endif

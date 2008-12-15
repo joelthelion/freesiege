@@ -18,6 +18,7 @@
 #include "gamescreen.h"
 
 #include "board.h"
+#include "utils.h"
 #include "background.h"
 #include "battlefield.h"
 #include "lifebar.h"
