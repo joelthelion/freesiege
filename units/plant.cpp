@@ -18,6 +18,7 @@
 //
 #include "plant.h"
 #include "battlefield.h"
+#include "param.h"
 
 bool Plant::player1_hasplant=false;
 bool Plant::player2_hasplant=false;

@@ -20,9 +20,9 @@
 
 #include "message.h"
 #include "spritecollection.h"
-#include "utils.h"
 
 typedef enum {SOLDIER,DRUID,BALL,EXPLOSION,KNIGHT,GOLEM,PLANT,DRAGON,FLAME,FLOWER,VETERAN} UNIT_ID;
+typedef enum {PLAYER_1=1,PLAYER_2=2,PLAYER_NEUTRAL} PLAYER;
 
 class Unit {
 public:

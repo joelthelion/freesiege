@@ -18,6 +18,7 @@
 #include "background.h"
 #include "battlefield.h"
 #include "utils.h"
+#include "param.h"
 
 SDL_mutex *counter_reset_mutex;
 int valid_fps;

@@ -18,8 +18,6 @@
 #ifndef __BATTLEFIELD_H
 #define __BATTLEFIELD_H
 
-#include "message.h"
-#include "unit.h"
 #include "lifebar.h"
 #include "foreground.h"
 
@@ -33,7 +31,7 @@ public:
 
     static const float CastleW=80;
     static const float CastleH=180;
-    static const float BaseY=SCREEN_H-180+155;
+    static const float BaseY=600-180+155;
 private:
 	typedef std::list<Unit*> Units;
 	Units units;

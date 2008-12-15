@@ -19,6 +19,10 @@
 #ifndef __CONFIG_H__
 #define __CONFIG_H__
 
+typedef unsigned int TextureId;
+typedef TextureId* TextureIds;
+#define N_TEXTURE 512
+
 #include <vector>
 #include <list>
 #include <map>
@@ -31,6 +35,8 @@
 #include <cassert>
 #include <algorithm>
 #include <set>
+#include <fstream>
+#include <ctime>
 
 #ifdef WIN32
 	#include <windows.h>

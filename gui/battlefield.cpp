@@ -17,11 +17,13 @@
 //
 #include "battlefield.h"
 
-#include "param.h"
 #include "collisionmatrix.h"
+#include "param.h"
 
-#include "unit.h"
-#include "plant.h"
+//#include "unit.h"
+#include "plant.h" //for resetting plant counter
+
+#define FIELD_UPDATE_FRAME_SKIP 1 //skip UPDATE_FRAME_SKIP between update
 
 BattleField::BattleField(const SpriteCollection *spr_coll,LifeBar *lifebar1,LifeBar *lifebar2,Foreground * foreground) {
 	this->spr_coll=spr_coll;

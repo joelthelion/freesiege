@@ -16,9 +16,8 @@
 //	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 #include "combinaisonscreen.h"
-
-#include "combinaison.h"
-#include <iostream>
+#include "board.h"
+#include "param.h"
 
 #define COMBI_NAME_NORMAL_H 36
 #define COMBI_NAME_SELECTED_H 50

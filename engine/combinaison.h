@@ -18,8 +18,15 @@
 #ifndef __COMBINAISON_H
 #define __COMBINAISON_H
 
-#include "param.h"
-#include <string>
+#include "config.h"
+
+#define WOOD 'W'
+#define STEEL 'S'
+#define MAGIC 'M'
+#define FIRE 'F'
+#define ANY '.'
+#define NONE 'x'
+#define USED 'x'
 
 class Combinaison: public std::string {
 friend std::ostream &operator<<(std::ostream &os,const Combinaison &combi);

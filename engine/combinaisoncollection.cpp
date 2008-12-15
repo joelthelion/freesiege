@@ -17,11 +17,6 @@
 //
 #include "combinaisoncollection.h"
 
-#include "combinaison.h"
-#include <fstream>
-#include <iostream>
-#include <map>
-
 CombinaisonCollection::CombinaisonCollection(const std::string &path) {
 	std::ifstream file(path.c_str());
 	if (file.rdstate()) {

@@ -18,7 +18,7 @@
 #ifndef __LIFEBAR_H
 #define __LIFEBAR_H
 
-#include "spritecollection.h"
+#include "unit.h"
 
 class LifeBar {
 public:

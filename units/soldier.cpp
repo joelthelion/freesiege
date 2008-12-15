@@ -17,6 +17,8 @@
 //
 #include "soldier.h"
 #include "battlefield.h"
+#include "param.h"
+#include "utils.h"
 
 Soldier::Soldier(const SpriteCollection *spr_coll,PLAYER player): Unit(player) {
 	w=W;

@@ -16,8 +16,7 @@
 //	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 #include "combinaison.h"
-
-#include <iostream>
+#include "board.h"
 
 std::ostream &operator<<(std::ostream &os,const Combinaison &combi) {
 	return os<<"("<<combi.start_i<<","<<combi.start_j<<")"<<static_cast<std::string>(combi);

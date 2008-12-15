@@ -17,6 +17,7 @@
 //
 #include "knight.h"
 #include "battlefield.h"
+#include "param.h"
 
 Knight::Knight(const SpriteCollection *spr_coll,PLAYER player): Unit(player) {
 	float factor=0.8+0.2*rand()/RAND_MAX;

@@ -18,6 +18,7 @@
 #include "foreground.h"
 
 #include "utils.h"
+#include "param.h"
 
 #define FLOWER_SPEED 7
 #define FLOWER_ROT_SPEED 10 

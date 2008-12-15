@@ -17,6 +17,7 @@
 //
 
 #include "utils.h"
+#include "param.h"
 #include "gamescreen.h"
 #include "menuscreen.h"
 #include "combinaisonscreen.h"

@@ -17,8 +17,6 @@
 //
 #include "sprite.h"
 
-#include <iostream>
-
 //helper function
 int nearest_power(int number) {
 	int i;

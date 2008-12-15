@@ -17,6 +17,7 @@
 //
 #include "druid.h"
 #include "battlefield.h"
+#include "param.h"
 
 Druid::Druid(const SpriteCollection *spr_coll,PLAYER player) : Unit(player) {
 	bit_druid=spr_coll->get_sprite("druid_unit");

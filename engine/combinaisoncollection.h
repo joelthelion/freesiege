@@ -18,9 +18,7 @@
 #ifndef __COMBINAISONCOLLECTION_H
 #define __COMBINAISONCOLLECTION_H
 
-#include "config.h"
-
-class Combinaison;
+#include "combinaison.h"
 
 class CombinaisonCollection {
 friend std::ostream &operator<<(std::ostream &os,const CombinaisonCollection &collection);

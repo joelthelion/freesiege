@@ -19,10 +19,7 @@
 
 #include "board.h"
 #include "utils.h"
-#include "background.h"
-#include "battlefield.h"
-#include "lifebar.h"
-#include "foreground.h"
+#include "param.h"
 
 #define FONT_COLOR { 0x77, 0xd1, 0x00, 0 }
 

@@ -17,11 +17,6 @@
 //
 #include "spritecollection.h"
 
-#include <fstream>
-#include <iostream>
-#include <string>
-#include "utils.h"
-
 SpriteCollection::SpriteCollection(const std::string &spr_path,const std::string &anim_path,const std::string &base_dir,TextureIds ids) {
 	load_sprites(spr_path,base_dir,ids);
 	load_anim(anim_path,base_dir,ids+100);

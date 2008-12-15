@@ -19,7 +19,6 @@
 #define __SPRITE_H
 
 #include "config.h"
-#include "param.h"
 
 class Sprite {
 public:

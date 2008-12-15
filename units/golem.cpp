@@ -17,6 +17,8 @@
 //
 #include "golem.h"
 #include "battlefield.h"
+#include "param.h"
+#include "utils.h"
 
 Golem::Golem(const SpriteCollection *spr_coll,PLAYER player): Unit(player) {
 	w=W;

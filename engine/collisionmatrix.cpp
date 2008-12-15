@@ -17,8 +17,6 @@
 //
 #include "collisionmatrix.h"
 
-#include "unit.h"
-
 typedef std::pair<float,int> CoordPair;// fst: coord, scd: unit index
 
 bool less_than(const CoordPair& p1,const CoordPair& p2) {

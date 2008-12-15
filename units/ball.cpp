@@ -17,6 +17,7 @@
 //
 #include "ball.h"
 #include "battlefield.h"
+#include "param.h"
 
 float Ball::X=14;
 float Ball::Y=84;

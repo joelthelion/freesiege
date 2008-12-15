@@ -17,7 +17,7 @@
 //
 #include "menu.h"
 
-#include <iostream>
+#include "param.h"
 
 #define MENU_Y 350
 #define MENU_SELECTED_H 55

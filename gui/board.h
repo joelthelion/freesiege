@@ -18,13 +18,15 @@
 #ifndef __BOARD_H
 #define __BOARD_H
 
-#include "param.h"
-#include "sprite.h"
-class SpriteCollection;
-class BattleField;
 #include "combinaisoncollection.h"
-class Combinaison;
-#include <string> 
+#include "battlefield.h"
+
+#define BOARD_H 5  //Board grid height
+#define BOARD_W 6  //Board grid width
+#define BOARD_BORDER 5
+#define ELEM_H  50 //Height of element sprite
+#define ELEM_W  50 //Width of element sprite
+#define SPACING 10 //Spacing between element
 
 class Board {
 public:

@@ -17,6 +17,7 @@
 //
 #include "veteran.h"
 #include "battlefield.h"
+#include "param.h"
 
 Veteran::Veteran(const SpriteCollection *spr_coll,PLAYER player): Unit(player) {
 	float factor=0.8+0.2*rand()/RAND_MAX;

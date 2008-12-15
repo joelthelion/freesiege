@@ -18,6 +18,7 @@
 //
 #include "flame.h"
 #include "battlefield.h"
+#include "utils.h"
 
 float Flame::Y=170;
 float Flame::DX=7;

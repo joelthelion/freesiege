@@ -16,10 +16,15 @@
 //	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 #include "lifebar.h"
-
-#include "utils.h"
-#include <string>
 #include "param.h"
+
+#define LIFE_Y 320
+#define LIFE_INNER_BORDER 3 
+#define LIFE_W 360
+#define LIFE_H 39
+#define LIFE_BORDER 5
+#define LIFE_FACTOR 60
+#define LIFE_DECREASE 0.002
 
 LifeBar::LifeBar(const SpriteCollection *spr_coll,PLAYER player) {
 	this->life=1.0;

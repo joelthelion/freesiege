@@ -18,6 +18,8 @@
 //
 #include "dragon.h"
 #include "battlefield.h"
+#include "param.h"
+#include "utils.h"
 
 Dragon::Dragon(const SpriteCollection *spr_coll,PLAYER player): Unit(player) {
 	w=W;

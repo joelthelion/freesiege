@@ -17,9 +17,6 @@
 //
 #include "utils.h"
 
-#include <sstream>
-#include <ctime>
-
 // written by Ste Cork, free for any and all use.
 // and patched by us
 

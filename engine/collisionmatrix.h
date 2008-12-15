@@ -18,13 +18,7 @@
 #ifndef __COLLISIONMATRIX_H
 #define __COLLISIONMATRIX_H
 
-#include <list>
-#include <map>
-#include <iostream>
-#include <vector>
-#include "message.h"
-class Unit;
-
+#include "unit.h"
 
 class CollisionMatrix {
 friend std::ostream &operator<<(std::ostream &os,const CollisionMatrix &coll_matrix);

@@ -18,7 +18,7 @@
 #ifndef __FOREGROUND_H
 #define __FOREGROUND_H
 
-#include "spritecollection.h"
+#include "unit.h"
 
 class Foreground {
 public:
