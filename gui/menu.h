@@ -18,8 +18,6 @@
 #ifndef __MENU_H
 #define __MENU_H
 
-#include <vector>
-#include <string>
 #include "sprite.h"
 
 class Menu {

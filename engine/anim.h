@@ -18,8 +18,6 @@
 #ifndef __ANIM_H
 #define __ANIM_H
 
-#include <vector>
-#include <string>
 #include "sprite.h"
 
 class Anim {

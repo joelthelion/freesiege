@@ -19,9 +19,7 @@
 #define __MENUSCREEN_H
 
 #include "spritecollection.h"
-#include "sprite.h"
 #include "menu.h"
-#include <stack>
 
 class MenuScreen {
 public:

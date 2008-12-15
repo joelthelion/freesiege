@@ -18,7 +18,6 @@
 #include "menu.h"
 
 #include <iostream>
-#include "plateformSDL.h"
 
 #define MENU_Y 350
 #define MENU_SELECTED_H 55

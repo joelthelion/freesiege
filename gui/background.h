@@ -19,7 +19,6 @@
 #define __BACKGROUND_H
 
 #include "spritecollection.h"
-#include <vector>
 
 class Background {
 public:

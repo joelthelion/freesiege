@@ -18,7 +18,6 @@
 #ifndef __BATTLEFIELD_H
 #define __BATTLEFIELD_H
 
-#include <list>
 #include "message.h"
 #include "lifebar.h"
 #include "foreground.h"

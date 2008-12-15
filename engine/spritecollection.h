@@ -18,7 +18,6 @@
 #ifndef __SPRITE__COLLECTION_H
 #define __SPRITE__COLLECTION_H
 
-#include <map>
 #include "anim.h"
 
 class SpriteCollection {

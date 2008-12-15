@@ -18,10 +18,8 @@
 #ifndef __MESSAGE_H
 #define __MESSAGE_H
 
-#include <vector>
-#include <queue>
-#include <iostream>
-#include <string>
+#include "config.h"
+
 class Unit;
 
 const std::string mess_name[10]={"collision","attack","walk","die","damage player","fight ended","trigger","shoot","spawn","null"};

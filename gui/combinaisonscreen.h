@@ -20,9 +20,6 @@
 
 #include "spritecollection.h"
 #include "combinaisoncollection.h"
-#include "sprite.h"
-#include <map>
-#include <vector>
 
 class CombinaisonScreen {
 public:

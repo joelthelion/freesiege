@@ -17,10 +17,6 @@
 //
 #include "menuscreen.h"
 
-#include "param.h"
-#include "utils.h"
-#include "plateformSDL.h"
-
 #define MENUSCREEN_BASE_Y 150
 #define MENUSCREEN_BASE_X 70
 #define MENUSCREEN_FREE_FRAME_COUNT 15

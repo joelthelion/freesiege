@@ -19,6 +19,15 @@
 #ifndef __PLATEFORMSDL_H
 #define __PLATEFORMSDL_H
 
+#include <vector>
+#include <list>
+#include <map>
+#include <queue>
+#include <iostream>
+#include <string>
+#include <cstdlib>
+#include <stack>
+
 #ifdef WIN32
 	#include <windows.h>
 	#include <SDL.h>

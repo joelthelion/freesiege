@@ -17,8 +17,6 @@
 //
 #include "combinaisonscreen.h"
 
-#include "utils.h"
-#include "plateformSDL.h"
 #include "combinaison.h"
 #include <iostream>
 

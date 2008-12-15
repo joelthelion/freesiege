@@ -18,8 +18,7 @@
 #ifndef __UTILS_H
 #define __UTILS_H
 
-#include <string>
-#include <cstdlib>
+#include "config.h"
 
 //general purpose function
 std::string number_as_roman(int iNumber);

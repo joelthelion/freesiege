@@ -19,7 +19,6 @@
 #define __FOREGROUND_H
 
 #include "spritecollection.h"
-#include <list>
 
 class Foreground {
 public:

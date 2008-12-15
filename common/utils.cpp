@@ -17,12 +17,8 @@
 //
 #include "utils.h"
 
-#include "plateformSDL.h"
-#include "param.h"
 #include <sstream>
-
 #include <ctime>
-#include <cstdlib>
 
 // written by Ste Cork, free for any and all use.
 // and patched by us

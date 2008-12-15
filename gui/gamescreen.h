@@ -19,9 +19,7 @@
 #define __GAMESCREEN_H
 
 #include "background.h"
-#include "spritecollection.h"
 #include "combinaisoncollection.h"
-#include "param.h"
 
 class GameScreen {
 public:

@@ -18,9 +18,8 @@
 #ifndef __SPRITE_H
 #define __SPRITE_H
 
-#include "plateformSDL.h"
+#include "config.h"
 #include "param.h"
-#include <string>
 
 class Sprite {
 public:
