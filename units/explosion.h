@@ -19,7 +19,6 @@
 #define __EXPLOSION_H
 
 #include "unit.h"
-#include "sprite.h"
 
 class Explosion: public Unit {
 public:
@@ -28,6 +27,11 @@ public:
 	virtual void post_message(MessageQueue *mess_queue);
 	virtual void handle_message(const Message &mess,MessageQueue *mess_queue);
 	virtual void draw();
+
+    static const float Damage=3;
+    static const float W=100;
+    static const float H=40;
+    static const int SpriteNumber=6; 
 private:
 	bool init;
 	const Sprite *bit_explosion_a;

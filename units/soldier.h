@@ -27,6 +27,13 @@ public:
 	virtual void post_message(MessageQueue *mess_queue);
 	virtual void handle_message(const Message &mess,MessageQueue *mess_queue);
 	virtual void draw();
+
+    static const int Life=30;
+    static const int Damage=5;
+    static const int PlayerDamage=5;
+    static const float W=23;
+    static const float H=32;
+    static const float DX=2;
 private:
 	typedef enum {STOP,WALK,FIGHT,CADAVER} State;
 

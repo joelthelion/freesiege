@@ -22,6 +22,8 @@
 #include "spritecollection.h"
 #include "utils.h"
 
+typedef enum {SOLDIER,DRUID,BALL,EXPLOSION,KNIGHT,GOLEM,PLANT,DRAGON,FLAME,FLOWER,VETERAN} UNIT_ID;
+
 class Unit {
 public:
 	static Unit *spawn(UNIT_ID name,const SpriteCollection *spr_coll,PLAYER player,float x=0);

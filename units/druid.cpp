@@ -16,20 +16,16 @@
 //	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 #include "druid.h"
-
-#include "param.h"
-
-#define DRUID_X 2
-#define DRUID_Y 90
+#include "battlefield.h"
 
 Druid::Druid(const SpriteCollection *spr_coll,PLAYER player) : Unit(player) {
 	bit_druid=spr_coll->get_sprite("druid_unit");
 	if (player==PLAYER_1) {
-		x=DRUID_X;
+		x=X;
 	} else {
-		x=SCREEN_W-DRUID_X-bit_druid->w;
+		x=SCREEN_W-X-bit_druid->w;
 	}
-	y=FIELD_BASE_Y-DRUID_Y;
+	y=BattleField::BaseY-Y;
 	w=bit_druid->w;
 	h=bit_druid->h;
 

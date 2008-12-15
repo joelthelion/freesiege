@@ -17,27 +17,21 @@
 //	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 #include "dragon.h"
-
-#define DRAGON_LIFE 200
-#define DRAGON_PLAYER_DAMAGE 6
-#define DRAGON_Y 180 
-#define DRAGON_W 174
-#define DRAGON_H 58
-#define DRAGON_DX 1
+#include "battlefield.h"
 
 Dragon::Dragon(const SpriteCollection *spr_coll,PLAYER player): Unit(player) {
-	w=DRAGON_W;
-	h=DRAGON_H;
+	w=W;
+	h=H;
 
 	float f=factor(0.8);
 	if (player==PLAYER_1) {
 		x=-w;
-		dx=f*DRAGON_DX;
+		dx=f*DX;
 	} else {
 		x=SCREEN_W;
-		dx=-f*DRAGON_DX;
+		dx=-f*DX;
 	}
-	y=FIELD_BASE_Y-DRAGON_Y;
+	y=BattleField::BaseY-Y;
 
 	anim_dragon_fly=spr_coll->get_anim_cycle_iterator("dragon_fly",0.175);
 	bit_dragon_dead=spr_coll->get_sprite("dragon_cadaver");
@@ -45,7 +39,7 @@ Dragon::Dragon(const SpriteCollection *spr_coll,PLAYER player): Unit(player) {
 	state=FLY;
 	
 	this->name="dragon";
-	this->life=DRAGON_LIFE;
+	this->life=Life;
 	this->collide=true;
 	this->init=true;
 	this->player = player;
@@ -56,7 +50,7 @@ Dragon::~Dragon() {}
 void Dragon::post_message(MessageQueue *mess_queue) {
 	switch (state) {
 	case FLY:
-		if ((player==PLAYER_1 && x>SCREEN_W-FIELD_CASTLE_W) || (player==PLAYER_2 && x<FIELD_CASTLE_W-w)) mess_queue->push(Message(Message::EVENT_DAMAGE_PLAYER,this,this,NO_DELAY,Message::PRIORITY_NORMAL,DRAGON_PLAYER_DAMAGE));
+		if ((player==PLAYER_1 && x>SCREEN_W-BattleField::CastleW) || (player==PLAYER_2 && x<BattleField::CastleW-w)) mess_queue->push(Message(Message::EVENT_DAMAGE_PLAYER,this,this,NO_DELAY,Message::PRIORITY_NORMAL,PlayerDamage));
 		else x=x+dx;
 		
 		if (init) {
@@ -66,7 +60,7 @@ void Dragon::post_message(MessageQueue *mess_queue) {
 
 		break;
 	case CADAVER:
-		if (y<FIELD_BASE_Y-DRAGON_H) { y+=5; x+=dx; }
+		if (y<BattleField::BaseY-H) { y+=5; x+=dx; }
 		break;
 	}
 }

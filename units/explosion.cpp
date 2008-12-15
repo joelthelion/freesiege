@@ -16,23 +16,18 @@
 //	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 #include "explosion.h"
-
-#define EXPLOSION_DAMAGE 3
-#define EXPLOSION_W 100
-#define EXPLOSION_H 40
-#define EXPLOSION_SPRITE_NUMBER 6 
-#include "spritecollection.h"
+#include "battlefield.h"
 
 Explosion::Explosion(const SpriteCollection *spr_coll,float x) : Unit(PLAYER_NEUTRAL) {
 	bit_explosion_a=spr_coll->get_sprite("explosion_unit_a");
 	bit_explosion_b=spr_coll->get_sprite("explosion_unit_b");
 	
-	this->w=EXPLOSION_W;
-	this->h=EXPLOSION_H;
+	this->w=W;
+	this->h=H;
 	
 	collide=true;
 	this->x=x-w/2;
-	this->y=FIELD_BASE_Y-h;
+	this->y=BattleField::BaseY-h;
 	
 	init=true;
 	this->name="explosion";
@@ -55,7 +50,7 @@ void Explosion::handle_message(const Message &mess,MessageQueue *mess_queue) {
 		break;	
 	case Message::EVENT_COLLISION:
 		if (mess.sender->get_player()!=PLAYER_NEUTRAL) {
-			mess_queue->push(Message(Message::EVENT_ATTACK,mess.sender,this,NO_DELAY,Message::PRIORITY_NORMAL,EXPLOSION_DAMAGE));
+			mess_queue->push(Message(Message::EVENT_ATTACK,mess.sender,this,NO_DELAY,Message::PRIORITY_NORMAL,Damage));
 		}
 		break;
 	default:
@@ -65,10 +60,10 @@ void Explosion::handle_message(const Message &mess,MessageQueue *mess_queue) {
 
 void Explosion::draw() {
 	const Sprite *current_bitmap;
-	for (int i=0;i<EXPLOSION_SPRITE_NUMBER;i++) {
+	for (int i=0;i<SpriteNumber;i++) {
 		current_bitmap = (rand() % 2) ? bit_explosion_a : bit_explosion_b;
-		float draw_x = rand() % (EXPLOSION_W-int(current_bitmap->w))+x;
-		float draw_y = rand() % (EXPLOSION_H-int(current_bitmap->h))+y;
+		float draw_x = (rand() % int(w-current_bitmap->w))+x;
+		float draw_y = (rand() % int(h-current_bitmap->h))+y;
 		current_bitmap->draw(draw_x,draw_y);
 	}
 }

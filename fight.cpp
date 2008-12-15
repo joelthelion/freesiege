@@ -130,23 +130,11 @@ int main(int argc, char* argv[]) {
 				case SDLK_j:
 					battlefield.spawn(FLOWER,PLAYER_1);
 					break;
-				case SDLK_i:
-					battlefield.spawn(ARCHER,PLAYER_2);
-					break;
-				case SDLK_k:
-					battlefield.spawn(ARCHER,PLAYER_1);
-					break;
 				case SDLK_o:
 					battlefield.spawn(VETERAN,PLAYER_2);
 					break;
 				case SDLK_l:
 					battlefield.spawn(VETERAN,PLAYER_1);
-					break;
-				case SDLK_p:
-					battlefield.spawn(CATAPULT,PLAYER_2);
-					break;
-				case SDLK_m:
-					battlefield.spawn(CATAPULT,PLAYER_1);
 					break;
 				default:
 					break;

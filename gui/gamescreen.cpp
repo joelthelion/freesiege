@@ -24,6 +24,8 @@
 #include "lifebar.h"
 #include "foreground.h"
 
+#define FONT_COLOR { 0x77, 0xd1, 0x00, 0 }
+
 GameScreen::GameScreen(const SpriteCollection *spr_coll,const CombinaisonCollection *cmb_coll,const std::string &ttf_path,TextureIds ids,Background *background) {
 	font=TTF_OpenFont(ttf_path.c_str(),80);
 	font_huge=TTF_OpenFont(ttf_path.c_str(),120);

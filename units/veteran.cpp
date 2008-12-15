@@ -16,40 +16,29 @@
 //	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 #include "veteran.h"
-
-#include "lifebar.h"
-
-#include <cassert>
-#include <cmath>
-
-#define VETERAN_LIFE 60
-#define VETERAN_ATTACK 8
-#define VETERAN_PLAYER_DAMAGE 16
-#define VETERAN_W 40
-#define VETERAN_H 52
-#define VETERAN_DX 1
+#include "battlefield.h"
 
 Veteran::Veteran(const SpriteCollection *spr_coll,PLAYER player): Unit(player) {
 	float factor=0.8+0.2*rand()/RAND_MAX;
 	if (player==PLAYER_1) {
 		x=0;
-		dx=factor*VETERAN_DX;
+		dx=factor*DX;
 	} else {
 		x=SCREEN_W;
-		dx=-factor*VETERAN_DX;
+		dx=-factor*DX;
 	}
 
 	bit_veteran_dead=spr_coll->get_sprite("veteran_unit_cadaver");
 	anim_veteran=spr_coll->get_anim_cycle_iterator("veteran_walk",0.14);
 	anim_veteran_fight=spr_coll->get_anim_cycle_iterator("veteran_fight",0.18);
 
-	w=VETERAN_W;
-	h=VETERAN_H;
-	y=FIELD_BASE_Y-h;
+	w=W;
+	h=H;
+	y=BattleField::BaseY-h;
 	state=WALK;
 	
 	this->name="veteran";
-	this->life=VETERAN_LIFE;
+	this->life=Life;
 	this->collide=true;
 }
 
@@ -59,11 +48,11 @@ void Veteran::post_message(MessageQueue *mess_queue) {
 	assert(!dead);
 	switch (state) {
 	case STOP:
-		if ((player==PLAYER_1 && x>SCREEN_W-FIELD_CASTLE_W-w) || (player==PLAYER_2 && x<FIELD_CASTLE_W)) mess_queue->push(Message(Message::EVENT_DAMAGE_PLAYER,this,this,NO_DELAY,Message::PRIORITY_NORMAL,VETERAN_PLAYER_DAMAGE));
+		if ((player==PLAYER_1 && x>SCREEN_W-BattleField::CastleW-w) || (player==PLAYER_2 && x<BattleField::CastleW)) mess_queue->push(Message(Message::EVENT_DAMAGE_PLAYER,this,this,NO_DELAY,Message::PRIORITY_NORMAL,PlayerDamage));
 		state=WALK;
 		break;
 	case WALK:
-		if ((player==PLAYER_1 && x>SCREEN_W-FIELD_CASTLE_W-w) || (player==PLAYER_2 && x<FIELD_CASTLE_W)) mess_queue->push(Message(Message::EVENT_DAMAGE_PLAYER,this,this,NO_DELAY,Message::PRIORITY_NORMAL,VETERAN_PLAYER_DAMAGE));
+		if ((player==PLAYER_1 && x>SCREEN_W-BattleField::CastleW-w) || (player==PLAYER_2 && x<BattleField::CastleW)) mess_queue->push(Message(Message::EVENT_DAMAGE_PLAYER,this,this,NO_DELAY,Message::PRIORITY_NORMAL,PlayerDamage));
 		else x=x+dx;
 		break;
 	case FIGHT:
@@ -88,7 +77,7 @@ void Veteran::handle_message(const Message &mess,MessageQueue *mess_queue) {
 			if (mess.sender->get_player()!=this->player && mess.sender->get_player()!=PLAYER_NEUTRAL) {
 				collide=true;
 				state=FIGHT;
-				mess_queue->push(Message(Message::EVENT_ATTACK,mess.sender,this,NO_DELAY,Message::PRIORITY_NORMAL,rand()%VETERAN_ATTACK));
+				mess_queue->push(Message(Message::EVENT_ATTACK,mess.sender,this,NO_DELAY,Message::PRIORITY_NORMAL,rand()%Damage));
 				mess_queue->push(Message(Message::EVENT_ENDFIGHT,this,this,5,Message::PRIORITY_NORMAL));
 			}
 			break;
@@ -155,7 +144,7 @@ void Veteran::draw() {
 		else anim_veteran_fight.get_next_bitmap()->draw_flip_h(x,y);
 		break;	
 	case CADAVER:
-		bit_veteran_dead->draw(x-4,FIELD_BASE_Y-15);
+		bit_veteran_dead->draw(x-4,BattleField::BaseY-15);
 		break;
 	}
 	

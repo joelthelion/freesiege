@@ -16,13 +16,14 @@
 //	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 #include "ball.h"
+#include "battlefield.h"
 
-#define BALL_X 14
-#define BALL_Y 84
-#define BALL_DX 7
-#define BALL_DY 5
-#define BALL_AY 0.12
-#define BALL_DAMAGE 80
+float Ball::X=14;
+float Ball::Y=84;
+float Ball::DX=7;
+float Ball::DY=5;
+float Ball::AY=0.12;
+float Ball::Damage=80;
 
 Ball::Ball(const SpriteCollection *spr_coll,PLAYER player) : Unit(player) {
 	bit_ball=spr_coll->get_sprite("ball_unit");
@@ -30,14 +31,14 @@ Ball::Ball(const SpriteCollection *spr_coll,PLAYER player) : Unit(player) {
 	w=bit_ball->w;
 	h=bit_ball->h;
 
-	if (player==PLAYER_1) x=BALL_X;
-	else x=SCREEN_W-BALL_X-w;
+	if (player==PLAYER_1) x=X;
+	else x=SCREEN_W-X-w;
 
 	float factor=0.5+0.5*rand()/RAND_MAX;
-	y=FIELD_BASE_Y-BALL_Y;
-	dy=-BALL_DY*factor;
-	if (player==PLAYER_1) dx=BALL_DX*factor;
-	else dx=-BALL_DX*factor;
+	y=BattleField::BaseY-Y;
+	dy=-DY*factor;
+	if (player==PLAYER_1) dx=DX*factor;
+	else dx=-DX*factor;
 	this->player=PLAYER_NEUTRAL;
 
 	collide=true;
@@ -49,9 +50,9 @@ Ball::~Ball() {}
 void Ball::post_message(MessageQueue *mess_queue) {
 	x+=dx;
 	y+=dy;
-	dy+=BALL_AY;
-	if (y>=FIELD_BASE_Y-h) {
-		y=FIELD_BASE_Y-h;
+	dy+=AY;
+	if (y>=BattleField::BaseY-h) {
+		y=BattleField::BaseY-h;
 		mess_queue->push(Message(Message::EVENT_SPAWN,this,this,NO_DELAY,Message::PRIORITY_NORMAL,EXPLOSION,x));
 		dead=true;
 	}
@@ -62,7 +63,7 @@ void Ball::handle_message(const Message &mess,MessageQueue *mess_queue) {
 	switch (mess.event) {
 	case Message::EVENT_COLLISION:
 		if (mess.sender->get_player()!=PLAYER_NEUTRAL) {
-			mess_queue->push(Message(Message::EVENT_ATTACK,mess.sender,this,NO_DELAY,Message::PRIORITY_NORMAL,BALL_DAMAGE));
+			mess_queue->push(Message(Message::EVENT_ATTACK,mess.sender,this,NO_DELAY,Message::PRIORITY_NORMAL,Damage));
 			dead=true;
 		}
 		break;

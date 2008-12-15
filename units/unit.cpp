@@ -17,7 +17,6 @@
 //
 #include "unit.h"
 
-#include <iostream>
 #include "soldier.h"
 #include "druid.h"
 #include "ball.h"
@@ -28,41 +27,37 @@
 #include "dragon.h"
 #include "flame.h"
 #include "veteran.h"
-#include "archer.h"
-#include "arrow.h"
-#include "catapult.h"
-#include "stone.h"
 
 Unit *Unit::spawn(UNIT_ID name,const SpriteCollection *spr_coll,PLAYER player,float x) {
 	switch (name) {
 	case SOLDIER:
 		return new Soldier(spr_coll, player);
+
 	case KNIGHT:
 		return new Knight(spr_coll,player);
-	case DRUID:
-		return new Druid(spr_coll, player);
-	case GOLEM:
-		return new Golem(spr_coll, player);
-	case PLANT:
-		return new Plant(spr_coll, player);
-	case DRAGON:
-		return new Dragon(spr_coll, player);
-	case BALL:
-		return new Ball(spr_coll, player);
-	case EXPLOSION:
-		return new Explosion(spr_coll, x);
-	case FLAME:
-		return new Flame(spr_coll, player, x);
-	case ARCHER:
-		return new Archer(spr_coll, player);
-	case ARROW:
-		return new Arrow(spr_coll, player, x);
+
 	case VETERAN:
 		return new Veteran(spr_coll, player);
-	case CATAPULT:
-		return new Catapult(spr_coll, player);
-	case STONE:
-		return new Stone(spr_coll, player, x);
+
+	case DRUID:
+		return new Druid(spr_coll, player);
+	case BALL:
+		return new Ball(spr_coll, player);
+
+	case GOLEM:
+		return new Golem(spr_coll, player);
+
+	case PLANT:
+		return new Plant(spr_coll, player);
+
+	case DRAGON:
+		return new Dragon(spr_coll, player);
+	case FLAME:
+		return new Flame(spr_coll, player, x);
+
+	case EXPLOSION:
+		return new Explosion(spr_coll, x);
+
 	default:
 		return NULL;
 	}

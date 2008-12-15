@@ -170,9 +170,10 @@ void Board::validate() {
 			else if (*name=="dragon") field->spawn(DRAGON,player);
 			else if (*name=="marion") field->spawn(FLOWER,player);
 			else if (*name=="veteran") field->spawn(VETERAN,player);
-			else if (*name=="archer") field->spawn(ARCHER,player);
-			else if (*name=="catapult") field->spawn(CATAPULT,player);
-			else field->spawn(SOLDIER,player);
+			else {
+              std::cout<<"WARNING default spawing..."<<std::endl;
+              field->spawn(SOLDIER,player);
+            }
 			iter++;
 		}
 		//std::cout<<std::endl;

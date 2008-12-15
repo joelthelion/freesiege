@@ -16,8 +16,8 @@
 //	You should have received a copy of the GNU General Public License
 //	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-#ifndef __PLATEFORMSDL_H
-#define __PLATEFORMSDL_H
+#ifndef __CONFIG_H__
+#define __CONFIG_H__
 
 #include <vector>
 #include <list>
@@ -29,6 +29,8 @@
 #include <stack>
 #include <sstream>
 #include <cassert>
+#include <algorithm>
+#include <set>
 
 #ifdef WIN32
 	#include <windows.h>

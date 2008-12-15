@@ -16,27 +16,21 @@
 //	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 #include "soldier.h"
-
-#define SOLDIER_LIFE 30
-#define SOLDIER_ATTACK 5
-#define SOLDIER_PLAYER_DAMAGE 5
-#define SOLDIER_W 23
-#define SOLDIER_H 32
-#define SOLDIER_DX 2
+#include "battlefield.h"
 
 Soldier::Soldier(const SpriteCollection *spr_coll,PLAYER player): Unit(player) {
-	w=SOLDIER_W;
-	h=SOLDIER_H;
+	w=W;
+	h=H;
 
 	float f=factor(0.8);
 	if (player==PLAYER_1) {
 		x=0;
-		dx=f*SOLDIER_DX;
+		dx=f*DX;
 	} else {
 		x=SCREEN_W-w;
-		dx=-f*SOLDIER_DX;
+		dx=-f*DX;
 	}
-	y=FIELD_BASE_Y-h;
+	y=BattleField::BaseY-h;
 
 	anim_soldier=spr_coll->get_anim_cycle_iterator("soldier_walk",0.22);
 	anim_soldier_fight=spr_coll->get_anim_cycle_iterator("soldier_fight",0.22);
@@ -45,7 +39,7 @@ Soldier::Soldier(const SpriteCollection *spr_coll,PLAYER player): Unit(player) {
 	state=WALK;
 	
 	this->name="soldier";
-	this->life=SOLDIER_LIFE;
+	this->life=Life;
 	this->collide=true;
 }
 
@@ -54,11 +48,11 @@ Soldier::~Soldier() {}
 void Soldier::post_message(MessageQueue *mess_queue) {
 	switch (state) {
 	case STOP:
-		if ((player==PLAYER_1 && x>SCREEN_W-FIELD_CASTLE_W-w) || (player==PLAYER_2 && x<FIELD_CASTLE_W)) mess_queue->push(Message(Message::EVENT_DAMAGE_PLAYER,this,this,NO_DELAY,Message::PRIORITY_NORMAL,SOLDIER_PLAYER_DAMAGE));
+		if ((player==PLAYER_1 && x>SCREEN_W-BattleField::CastleW-w) || (player==PLAYER_2 && x<BattleField::CastleW)) mess_queue->push(Message(Message::EVENT_DAMAGE_PLAYER,this,this,NO_DELAY,Message::PRIORITY_NORMAL,PlayerDamage));
 		state=WALK;
 		break;
 	case WALK:
-		if ((player==PLAYER_1 && x>SCREEN_W-FIELD_CASTLE_W-w) || (player==PLAYER_2 && x<FIELD_CASTLE_W)) mess_queue->push(Message(Message::EVENT_DAMAGE_PLAYER,this,this,NO_DELAY,Message::PRIORITY_NORMAL,SOLDIER_PLAYER_DAMAGE));
+		if ((player==PLAYER_1 && x>SCREEN_W-BattleField::CastleW-w) || (player==PLAYER_2 && x<BattleField::CastleW)) mess_queue->push(Message(Message::EVENT_DAMAGE_PLAYER,this,this,NO_DELAY,Message::PRIORITY_NORMAL,PlayerDamage));
 		else x=x+dx;
 		break;
 	case FIGHT:
@@ -83,7 +77,7 @@ void Soldier::handle_message(const Message &mess,MessageQueue *mess_queue) {
 			if (mess.sender->get_player()!=this->player && mess.sender->get_player()!=PLAYER_NEUTRAL) {
 				collide=true;
 				state=FIGHT;
-				mess_queue->push(Message(Message::EVENT_ATTACK,mess.sender,this,NO_DELAY,Message::PRIORITY_NORMAL,rand()%SOLDIER_ATTACK));
+				mess_queue->push(Message(Message::EVENT_ATTACK,mess.sender,this,NO_DELAY,Message::PRIORITY_NORMAL,rand()%Damage));
 				mess_queue->push(Message(Message::EVENT_ENDFIGHT,this,this,5,Message::PRIORITY_NORMAL));
 			}
 			break;
@@ -149,7 +143,7 @@ void Soldier::draw() {
 		else anim_soldier_fight.get_next_bitmap()->draw_flip_h(x-4,y-6);
 		break;	
 	case CADAVER:
-		bit_soldier_dead->draw(x-4,FIELD_BASE_Y-15);
+		bit_soldier_dead->draw(x-4,BattleField::BaseY-15);
 		break;
 	}
 	

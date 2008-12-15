@@ -19,7 +19,6 @@
 #define __DRUID_H
 
 #include "unit.h"
-#include <set>
 
 class Druid: public Unit {
 public:
@@ -28,6 +27,9 @@ public:
 	virtual void post_message(MessageQueue *mess_queue);
 	virtual void handle_message(const Message &mess,MessageQueue *mess_queue);
 	virtual void draw();
+
+    static const float X=2;
+    static const float Y=90;
 private:
 	typedef enum {INIT,WAIT,SHOOTED} State;
 	State state;

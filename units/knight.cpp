@@ -16,33 +16,27 @@
 //	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 #include "knight.h"
-
-#define KNIGHT_LIFE 50
-#define KNIGHT_ATTACK 8
-#define KNIGHT_PLAYER_DAMAGE 8
-#define KNIGHT_W 60
-#define KNIGHT_H 50
-#define KNIGHT_DX 4
+#include "battlefield.h"
 
 Knight::Knight(const SpriteCollection *spr_coll,PLAYER player): Unit(player) {
 	float factor=0.8+0.2*rand()/RAND_MAX;
 	if (player==PLAYER_1) {
 		x=0;
-		dx=factor*KNIGHT_DX;
+		dx=factor*DX;
 	} else {
 		x=SCREEN_W;
-		dx=-factor*KNIGHT_DX;
+		dx=-factor*DX;
 	}
 	anim_knight=spr_coll->get_anim_cycle_iterator("knight_running",0.4);
 	bit_knight_dead=spr_coll->get_sprite("knight_cadaver");
 
-	w=KNIGHT_W;
-	h=KNIGHT_H;
-	y=FIELD_BASE_Y-h;
+	w=W;
+	h=H;
+	y=BattleField::BaseY-h;
 	state=WALK;
 	
 	this->name="knight";
-	this->life=KNIGHT_LIFE;
+	this->life=Life;
 	this->collide=true;
 	this->blocked=false;
 }
@@ -52,11 +46,11 @@ Knight::~Knight() {}
 void Knight::post_message(MessageQueue *mess_queue) {
 	switch (state) {
 	case WALK:
-		if ((player==PLAYER_1 && x>SCREEN_W-FIELD_CASTLE_W-w) || (player==PLAYER_2 && x<FIELD_CASTLE_W)) mess_queue->push(Message(Message::EVENT_DAMAGE_PLAYER,this,this,NO_DELAY,Message::PRIORITY_NORMAL,KNIGHT_PLAYER_DAMAGE));
+		if ((player==PLAYER_1 && x>SCREEN_W-BattleField::CastleW-w) || (player==PLAYER_2 && x<BattleField::CastleW)) mess_queue->push(Message(Message::EVENT_DAMAGE_PLAYER,this,this,NO_DELAY,Message::PRIORITY_NORMAL,PlayerDamage));
 		else x=x+dx;
 		break;
 	case FIGHT:
-		if ((player==PLAYER_1 && x>SCREEN_W-FIELD_CASTLE_W-w) || (player==PLAYER_2 && x<FIELD_CASTLE_W)) mess_queue->push(Message(Message::EVENT_DAMAGE_PLAYER,this,this,NO_DELAY,Message::PRIORITY_NORMAL,KNIGHT_PLAYER_DAMAGE));
+		if ((player==PLAYER_1 && x>SCREEN_W-BattleField::CastleW-w) || (player==PLAYER_2 && x<BattleField::CastleW)) mess_queue->push(Message(Message::EVENT_DAMAGE_PLAYER,this,this,NO_DELAY,Message::PRIORITY_NORMAL,PlayerDamage));
 		if (!this->blocked) x=x+dx/2;
 		break;
 	case CADAVER:
@@ -80,7 +74,7 @@ void Knight::handle_message(const Message &mess,MessageQueue *mess_queue) {
 				collide=true;
 				state=FIGHT; anim_knight.set_speed(0.2);
 				mess_queue->push(Message(Message::EVENT_ENDFIGHT,this,this,5,Message::PRIORITY_NORMAL));
-				mess_queue->push(Message(Message::EVENT_ATTACK,mess.sender,this,NO_DELAY,Message::PRIORITY_NORMAL,rand()%KNIGHT_ATTACK));
+				mess_queue->push(Message(Message::EVENT_ATTACK,mess.sender,this,NO_DELAY,Message::PRIORITY_NORMAL,rand()%Damage));
 				if (mess.sender->name == "veteran"||mess.sender->name == "golem"||mess.sender->name == "plant") this->blocked=true;
 			}
 			break;
@@ -145,7 +139,7 @@ void Knight::draw() {
 		else anim_knight.get_next_bitmap()->draw(x,y);	
 		break;
 	case CADAVER:
-		bit_knight_dead->draw(x+10.5,FIELD_BASE_Y-30);
+		bit_knight_dead->draw(x+10.5,BattleField::BaseY-30);
 		break;
 	}
 	

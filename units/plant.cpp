@@ -17,12 +17,7 @@
 //	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 #include "plant.h"
-
-#define PLANT_LIFE 100
-#define PLANT_ATTACK 12
-#define PLANT_W 69
-#define PLANT_H 64
-#define PLANT_X 90
+#include "battlefield.h"
 
 bool Plant::player1_hasplant=false;
 bool Plant::player2_hasplant=false;
@@ -33,19 +28,18 @@ void Plant::reset_hasplant(){
 }
 
 Plant::Plant(const SpriteCollection *spr_coll,PLAYER player): Unit(player) {
-
-	w=PLANT_W;
-	h=PLANT_H;
-	y=FIELD_BASE_Y-h;
+	w=W;
+	h=H;
+	y=BattleField::BaseY-h;
 	
 	if (player==PLAYER_1) {
-		x=PLANT_X;
+		x=X;
 		if (player1_hasplant) {
 			dead=true; //Cannot have two plants at the same time
 		}
 		else player1_hasplant = true;
 	} else {
-		x=SCREEN_W-w-PLANT_X;
+		x=SCREEN_W-w-X;
 		if (player2_hasplant) {
 			dead=true; //Cannot have two plants at the same time
 		}
@@ -58,7 +52,7 @@ Plant::Plant(const SpriteCollection *spr_coll,PLAYER player): Unit(player) {
 
 	state=NORMAL;
 	this->name="plant";
-	this->life=PLANT_LIFE;
+	this->life=Life;
 	this->collide=true;
 }
 
@@ -75,7 +69,7 @@ void Plant::handle_message(const Message &mess,MessageQueue *mess_queue) {
 		case Message::EVENT_COLLISION:
 			if (mess.sender->get_player()!=this->player && mess.sender->get_player()!=PLAYER_NEUTRAL) {
 				state=FIGHT;
-				mess_queue->push(Message(Message::EVENT_ATTACK,mess.sender,this,NO_DELAY,Message::PRIORITY_NORMAL,rand()%PLANT_ATTACK));
+				mess_queue->push(Message(Message::EVENT_ATTACK,mess.sender,this,NO_DELAY,Message::PRIORITY_NORMAL,rand()%Damage));
 				mess_queue->push(Message(Message::EVENT_ENDFIGHT,this,this,5,Message::PRIORITY_NORMAL));
 			}
 			break;

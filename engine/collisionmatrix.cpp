@@ -18,9 +18,6 @@
 #include "collisionmatrix.h"
 
 #include "unit.h"
-#include <algorithm>
-#include <vector>
-#include <cassert>
 
 typedef std::pair<float,int> CoordPair;// fst: coord, scd: unit index
 

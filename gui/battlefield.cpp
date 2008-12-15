@@ -17,10 +17,7 @@
 //
 #include "battlefield.h"
 
-#include <string>
-#include <algorithm>
 #include "param.h"
-#include "utils.h"
 #include "collisionmatrix.h"
 
 #include "unit.h"
@@ -122,6 +119,6 @@ void BattleField::draw() {
 	for (Units::const_iterator iter=units.begin(); iter!=units.end(); iter++) (*iter)->draw();
 
 	//draw castles
-	bit_castle->draw(0,SCREEN_H-FIELD_CASTLE_H);
-	bit_castle->draw_flip_h(SCREEN_W-bit_castle->w,SCREEN_H-FIELD_CASTLE_H);
+	bit_castle->draw(0,SCREEN_H-CastleH);
+	bit_castle->draw_flip_h(SCREEN_W-bit_castle->w,SCREEN_H-CastleH);
 }

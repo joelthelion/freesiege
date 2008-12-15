@@ -16,35 +16,29 @@
 //	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 #include "golem.h"
-
-#define GOLEM_LIFE 300
-#define GOLEM_ATTACK 7
-#define GOLEM_PLAYER_DAMAGE 5
-#define GOLEM_W 74
-#define GOLEM_H 70
-#define GOLEM_DX 1
+#include "battlefield.h"
 
 Golem::Golem(const SpriteCollection *spr_coll,PLAYER player): Unit(player) {
-	w=GOLEM_W;
-	h=GOLEM_H;
+	w=W;
+	h=H;
 
 	float f=factor(0.8);
 	if (player==PLAYER_1) {
 		x=-w;
-		dx=f*GOLEM_DX;
+		dx=f*DX;
 	} else {
 		x=SCREEN_W;
-		dx=-f*GOLEM_DX;
+		dx=-f*DX;
 	}
 	anim_golem_walk=spr_coll->get_anim_cycle_iterator("golem_walk",0.175);
 	anim_golem_fight=spr_coll->get_anim_forward_backward_iterator("golem_fight",0.5);
 	bit_golem_dead=spr_coll->get_sprite("golem_cadaver");
 
-	y=FIELD_BASE_Y-h;
+	y=BattleField::BaseY-h;
 	state=WALK;
 	
 	this->name="golem";
-	this->life=GOLEM_LIFE;
+	this->life=Life;
 	this->collide=true;
 }
 
@@ -53,11 +47,11 @@ Golem::~Golem() {}
 void Golem::post_message(MessageQueue *mess_queue) {
 	switch (state) {
 	case STOP:
-		if ((player==PLAYER_1 && x>SCREEN_W-FIELD_CASTLE_W-w) || (player==PLAYER_2 && x<FIELD_CASTLE_W)) mess_queue->push(Message(Message::EVENT_DAMAGE_PLAYER,this,this,NO_DELAY,Message::PRIORITY_NORMAL,GOLEM_PLAYER_DAMAGE));
+		if ((player==PLAYER_1 && x>SCREEN_W-BattleField::CastleW-w) || (player==PLAYER_2 && x<BattleField::CastleW)) mess_queue->push(Message(Message::EVENT_DAMAGE_PLAYER,this,this,NO_DELAY,Message::PRIORITY_NORMAL,PlayerDamage));
 		state=WALK;
 		break;
 	case WALK:
-		if ((player==PLAYER_1 && x>SCREEN_W-FIELD_CASTLE_W-w) || (player==PLAYER_2 && x<FIELD_CASTLE_W)) mess_queue->push(Message(Message::EVENT_DAMAGE_PLAYER,this,this,NO_DELAY,Message::PRIORITY_NORMAL,GOLEM_PLAYER_DAMAGE));
+		if ((player==PLAYER_1 && x>SCREEN_W-BattleField::CastleW-w) || (player==PLAYER_2 && x<BattleField::CastleW)) mess_queue->push(Message(Message::EVENT_DAMAGE_PLAYER,this,this,NO_DELAY,Message::PRIORITY_NORMAL,PlayerDamage));
 		else x=x+dx;
 		break;
 	case FIGHT:
@@ -79,7 +73,7 @@ void Golem::handle_message(const Message &mess,MessageQueue *mess_queue) {
 			if (mess.sender->get_player()!=this->player && mess.sender->get_player()!=PLAYER_NEUTRAL) {
 				collide=true;
 				state=FIGHT;
-				mess_queue->push(Message(Message::EVENT_ATTACK,mess.sender,this,NO_DELAY,Message::PRIORITY_NORMAL,rand()%GOLEM_ATTACK));
+				mess_queue->push(Message(Message::EVENT_ATTACK,mess.sender,this,NO_DELAY,Message::PRIORITY_NORMAL,rand()%Damage));
 				mess_queue->push(Message(Message::EVENT_ENDFIGHT,this,this,5,Message::PRIORITY_NORMAL));
 			}
 			break;
@@ -148,7 +142,7 @@ void Golem::draw() {
 		else anim_golem_fight.get_next_bitmap()->draw_flip_h(x-10,y-5);
 		break;	
 	case CADAVER:
-		bit_golem_dead->draw(x-11,FIELD_BASE_Y-26);
+		bit_golem_dead->draw(x-11,BattleField::BaseY-26);
 		break;
 	}
 	

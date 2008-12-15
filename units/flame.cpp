@@ -17,13 +17,12 @@
 //	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 #include "flame.h"
+#include "battlefield.h"
 
-#include "spritecollection.h"
-
-#define FLAME_Y 170
-#define FLAME_DX 7
-#define FLAME_DY 5
-#define FLAME_DAMAGE 15
+float Flame::Y=170;
+float Flame::DX=7;
+float Flame::DY=5;
+int Flame::Damage=15;
 
 Flame::Flame(const SpriteCollection *spr_coll,PLAYER player,float pos_x) : Unit(player) {
 	bit_flame=spr_coll->get_sprite("flame_unit");
@@ -31,12 +30,12 @@ Flame::Flame(const SpriteCollection *spr_coll,PLAYER player,float pos_x) : Unit(
 	h=bit_flame->h;
 
 	x=pos_x-w/2; 
-	y=FIELD_BASE_Y-FLAME_Y;
+	y=BattleField::BaseY-Y;
 
 	float f=factor(0.5);
-	if (player==PLAYER_1) dx=FLAME_DX*f;
-	else dx=-FLAME_DX*f;
-	dy=-FLAME_DY*f;
+	if (player==PLAYER_1) dx=DX*f;
+	else dx=-DX*f;
+	dy=-DY*f;
 
 	this->player=PLAYER_NEUTRAL;
 
@@ -50,8 +49,8 @@ void Flame::post_message(MessageQueue *mess_queue) {
 	x+=dx;
 	y-=dy;
 
-	if (y>=FIELD_BASE_Y-h) {
-		y=FIELD_BASE_Y-h;
+	if (y>=BattleField::BaseY-h) {
+		y=BattleField::BaseY-h;
 		mess_queue->push(Message(Message::EVENT_SPAWN,this,this,NO_DELAY,Message::PRIORITY_NORMAL,EXPLOSION,x));
 		dead=true;
 	}
@@ -62,7 +61,7 @@ void Flame::handle_message(const Message &mess,MessageQueue *mess_queue) {
 		switch (mess.event) {
 		case Message::EVENT_COLLISION:
 			if (mess.sender->get_player()!=PLAYER_NEUTRAL && mess.sender->name!="dragon") {
-				mess_queue->push(Message(Message::EVENT_ATTACK,mess.sender,this,NO_DELAY,Message::PRIORITY_NORMAL,FLAME_DAMAGE));
+				mess_queue->push(Message(Message::EVENT_ATTACK,mess.sender,this,NO_DELAY,Message::PRIORITY_NORMAL,Damage));
 				mess_queue->push(Message(Message::EVENT_SPAWN,this,this,NO_DELAY,Message::PRIORITY_NORMAL,EXPLOSION,x));
 			}
 			break;

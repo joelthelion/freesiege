@@ -27,6 +27,13 @@ public:
 	virtual void post_message(MessageQueue *mess_queue);
 	virtual void handle_message(const Message &mess,MessageQueue *mess_queue);
 	virtual void draw();
+
+    static float X;
+    static float Y;
+    static float DX;
+    static float DY;
+    static float AY;
+    static float Damage;
 private:
 	float dx,dy;
 	const Sprite *bit_ball;

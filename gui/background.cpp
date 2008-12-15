@@ -17,9 +17,11 @@
 //
 #include "background.h"
 
-#include <string>
-#include "param.h"
-#include "utils.h"
+#include "utils.h" //for factor
+
+#define N_CLOUD 10
+#define MIN_CLOUD_SPEED 4 
+#define MAX_CLOUD_ALTITUDE 300
 
 Background::Background(const SpriteCollection *spr_coll) {
 	bit_back=spr_coll->get_sprite("background_back");

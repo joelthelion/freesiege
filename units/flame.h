@@ -28,6 +28,11 @@ public:
 	virtual void post_message(MessageQueue *mess_queue);
 	virtual void handle_message(const Message &mess,MessageQueue *mess_queue);
 	virtual void draw();
+
+    static float Y;
+    static float DX;
+    static float DY;
+    static int Damage;
 private:
 	float dx,dy;
 	

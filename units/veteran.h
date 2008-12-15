@@ -19,8 +19,6 @@
 #define __VETERAN_H
 
 #include "unit.h"
-#include "spritecollection.h"
-struct SDL_Surface;
 
 class Veteran: public Unit {
 public:
@@ -29,6 +27,13 @@ public:
 	virtual void post_message(MessageQueue *mess_queue);
 	virtual void handle_message(const Message &mess,MessageQueue *mess_queue);
 	virtual void draw();
+
+    static const int Life=60;
+    static const int Damage=8;
+    static const int PlayerDamage=16;
+    static const float W=40;
+    static const float H=52;
+    static const float DX=1;
 private:
 	typedef enum {STOP,WALK,FIGHT,CADAVER} State;
 

@@ -29,6 +29,12 @@ public:
 	virtual void handle_message(const Message &mess,MessageQueue *mess_queue);
 	virtual void draw();
 	static void reset_hasplant();
+
+    static const int Life=100;
+    static const int Damage=12;
+    static const float W=69;
+    static const float H=64;
+    static const float X=90;
 private:
 	typedef enum {NORMAL,FIGHT,CADAVER} State;
 
