@@ -86,10 +86,10 @@ int main(int argc, char* argv[]) {
 	std::string base_dir=get_base_dir();
 	Mix_Music *sample=NULL;
 	if (sound) {
-		std::string song_path=base_dir+"song.ogg";
+		std::string song_path=base_dir+"sounds/intro.ogg";
 		sample=Mix_LoadMUS(song_path.c_str());
 		if (!sample) {
-			std::cerr<<"sound load failed..."<<std::endl;
+			std::cerr<<"sound '"<<song_path<<"' load failed..."<<std::endl;
 			sound=false;
 		}
 	}
