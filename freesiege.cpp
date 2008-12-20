@@ -21,6 +21,7 @@
 #include "gamescreen.h"
 #include "menuscreen.h"
 #include "combinaisonscreen.h"
+#include "musiccollection.h"
 
 SDL_Surface *screen;
 
@@ -84,24 +85,13 @@ int main(int argc, char* argv[]) {
 	}
 	
 	std::string base_dir=get_base_dir();
-	Mix_Music *sample=NULL;
-	if (sound) {
-		std::string song_path=base_dir+"sounds/intro.ogg";
-		sample=Mix_LoadMUS(song_path.c_str());
-		if (!sample) {
-			std::cerr<<"sound '"<<song_path<<"' load failed..."<<std::endl;
-			sound=false;
-		}
-	}
-
-	if (sound) {
-		Mix_PlayMusic(sample,-1);
-		Mix_VolumeMusic(MIX_MAX_VOLUME);
-	}
-
 	//object init	
-	SpriteCollection spr_coll(base_dir+"sprites.cfg",base_dir+"anims.cfg",base_dir,&texture_ids[0]);
 	CombinaisonCollection cmb_coll(base_dir+"combi.cfg");	
+    std::cout<<cmb_coll<<std::endl;
+    MusicCollection music_coll(base_dir+"musics.cfg",base_dir,sound);
+    std::cout<<music_coll<<std::endl;
+	SpriteCollection spr_coll(base_dir+"sprites.cfg",base_dir+"anims.cfg",base_dir,&texture_ids[0]);
+    std::cout<<spr_coll<<std::endl;
 	
 	Background background(&spr_coll);
 	GameScreen game_screen(&spr_coll,&cmb_coll,base_dir+"chlorinar.ttf",&texture_ids[200],&background);
@@ -109,18 +99,21 @@ int main(int argc, char* argv[]) {
 	MenuScreen menu_screen(&spr_coll,base_dir+"chlorinar.ttf",&texture_ids[300]);
 
 	//main loop
+    music_coll.play_music("intro");
 	MenuScreen::SELECTION selection=MenuScreen::QUIT;
 	while (!menu_screen.display_menu(screen,selection)) {
 		if (selection==MenuScreen::TWO_PLAYERS) {
+            music_coll.play_random_music();
 			game_screen.display_game(screen);
+            music_coll.play_music("intro");
 		} else if (selection==MenuScreen::COMBINAISONS) {
+            music_coll.play_music("combi");
 			combi_screen.display_combinaisons(screen);
+            music_coll.play_music("intro");
 		} else std::cerr<<"unknown selection "<<selection<<std::endl;
 	}
 
-	if (sound) Mix_FreeMusic(sample);
 
-	Mix_CloseAudio();
 	TTF_Quit();
 	SDL_Quit();
 	return 0;

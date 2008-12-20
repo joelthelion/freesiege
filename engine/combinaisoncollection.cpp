@@ -89,6 +89,7 @@ std::ostream &operator<<(std::ostream &os,const CombinaisonCollection &collectio
 	Count::const_iterator count_iter=count.begin();
 	os<<count.size()<<" units:"<<*count_iter++->first<<"("<<count_iter->second<<" combis)";
 	while (count_iter!=count_end) os<<"/"<<*count_iter++->first<<"("<<count_iter->second<<" combis)";
+    os.flush();
 	
 	return os;
 }

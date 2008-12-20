@@ -8,4 +8,5 @@ SET(FS_ENGINE_SRCS
     engine/combinaisoncollection.cpp
     engine/message.cpp
     engine/collisionmatrix.cpp
+    engine/musiccollection.cpp
 )

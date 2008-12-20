@@ -39,8 +39,8 @@ void SpriteCollection::load_sprites(const std::string &path,const std::string &b
 	int c=0;
 	SDL_Surface *sprite;
 	while (!file.eof()) {
+        c++;
 		if (line[0] != '#') { //Ignore comment lines
-			c++;
 			pos=line.find(":",0);
 			if (pos!=std::string::npos) {
 				name=line.substr(0,pos);
@@ -153,17 +153,19 @@ std::ostream &operator<<(std::ostream &os,const SpriteCollection &collection) {
 		os<<collection.anim_coll.size()<<" anims:"<<anim_iter->first<<"("<<anim_iter->second->size()<<")";
 		anim_iter++;
 		while (anim_iter!=collection.anim_coll.end()) {
-			os<<"/"<<anim_iter->first<<"("<<anim_iter->second->size()<<")";
+			os<<"/"<<anim_iter->first<<"("<<anim_iter->second->size()<<" frames)";
 			anim_iter++;
 		}
 	} else os<<"no anims!!!";
 	os<<std::endl;
+    os.flush();
 
 	if (!collection.spr_coll.empty()) {
 		SpriteCollection::SprColl::const_iterator spr_iter=collection.spr_coll.begin();
 		os<<collection.spr_coll.size()<<" sprites:"<<spr_iter++->first;
 		while (spr_iter!=collection.spr_coll.end()) os<<"/"<<spr_iter++->first;
 	} else os<<"no sprites!!!";
+    os.flush();
 
 	return os;
 }
