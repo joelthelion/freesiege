@@ -292,9 +292,9 @@ void Board::draw() {
 	if (player==PLAYER_1) offset=BOARD_BORDER;
 	else offset=SCREEN_W-BOARD_W*(ELEM_H+SPACING)-SPACING-BOARD_BORDER;
 	
-	draw_background(offset);
 	bit_cursor->draw(offset+this->cursor_j*(ELEM_W+SPACING),BOARD_BORDER+this->cursor_i*(ELEM_H+SPACING));
 	if (this->state==SELECTED) bit_cursor->draw(offset+this->select_j*(ELEM_W+SPACING),BOARD_BORDER+this->select_i*(ELEM_H+SPACING));
+	draw_background(offset);
 	
 	this->state_changed=this->state_changed && (key[key_select] || key[key_swap] || key[key_validate]); //reset state changed
 	this->cursor_changed=this->cursor_changed && (key[key_left] || key[key_right] || key[key_down] || key[key_up]); //reset cursor changed
