@@ -188,6 +188,7 @@ void Board::validate() {
 			else if (*name=="dragon") field->spawn(DRAGON,player);
 			else if (*name=="marion") field->spawn(FLOWER,player);
 			else if (*name=="veteran") field->spawn(VETERAN,player);
+			else if (*name=="ram") field->spawn(RAM,player);
 			else {
               std::cout<<"WARNING default spawing..."<<std::endl;
               field->spawn(SOLDIER,player);

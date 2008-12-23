@@ -27,6 +27,7 @@
 #include "dragon.h"
 #include "flame.h"
 #include "veteran.h"
+#include "ram.h"
 
 Unit *Unit::spawn(UNIT_ID name,const SpriteCollection *spr_coll,PLAYER player,float x) {
 	switch (name) {
@@ -38,6 +39,9 @@ Unit *Unit::spawn(UNIT_ID name,const SpriteCollection *spr_coll,PLAYER player,fl
 
 	case VETERAN:
 		return new Veteran(spr_coll, player);
+
+	case RAM:
+		return new Ram(spr_coll, player);
 
 	case DRUID:
 		return new Druid(spr_coll, player);
