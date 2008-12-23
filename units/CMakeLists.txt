@@ -12,4 +12,5 @@ SET(FS_UNITS_SRCS
     units/flame.cpp
     units/soldier.cpp
     units/veteran.cpp
+    units/ram.cpp
 )
