@@ -178,6 +178,7 @@ void TrainingScreen::display_game(SDL_Surface *screen) {
 		SDL_FreeSurface(perfect_surf);
 
 		quit=false;
+        bool perfect=(life_bar1.get_life() == LIFE_FACTOR);
 		while (!quit && !quit_game) {
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			//background
@@ -199,7 +200,7 @@ void TrainingScreen::display_game(SDL_Surface *screen) {
 				current_skull->draw(SCREEN_W/2-current_skull->w/2,(SCREEN_H-current_skull->h)/2);
 			} else {
                 score_sprite.draw((SCREEN_W-score_sprite.w)/2,50);
-                if (life_bar1.get_life() == LIFE_FACTOR)
+                if (perfect)
                   {
                     perfect_sprite.draw((SCREEN_W-perfect_sprite.w)/2,60+score_sprite.h);
                     current_hand->draw(SCREEN_W/2-current_hand->w/2-80,80+score_sprite.h+perfect_sprite.h+current_skull->h);
