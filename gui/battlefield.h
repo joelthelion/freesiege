@@ -32,6 +32,9 @@ public:
     static const float CastleW=80;
     static const float CastleH=180;
     static const float BaseY=600-180+155;
+
+    int get_unit_count(PLAYER);
+    int get_nonplant_unit_count(PLAYER);
 private:
 	typedef std::list<Unit*> Units;
 	Units units;

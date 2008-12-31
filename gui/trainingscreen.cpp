@@ -21,6 +21,7 @@
 #include "board.h"
 #include "utils.h"
 #include "param.h"
+#include "plant.h"
 
 #define FONT_COLOR { 0x77, 0xd1, 0x00, 0 }
 #define LEVEL1_SPEED 150
@@ -112,27 +113,29 @@ void TrainingScreen::display_game(SDL_Surface *screen) {
 				}
 			}
             //Spawn computer units
-            if (not foreground.p2_flower or ticks%4==0) //the flower randomly slows the computer
+            if (play_ticks < SURVIVAL_TIME) { //you win if you survived
+                if (not foreground.p2_flower or ticks%4==0) //the flower randomly slows the computer
+                  {
+                    int soldier_tics=(LEVEL1_SPEED * std::pow(0.9,level-1));
+                    if (play_ticks%soldier_tics==0)
+                        battlefield.spawn(SOLDIER,PLAYER_2);
+                    if (play_ticks%(soldier_tics*6)==0)
+                        battlefield.spawn(KNIGHT,PLAYER_2);
+                    if (play_ticks%(soldier_tics*7)==0)
+                        battlefield.spawn(VETERAN,PLAYER_2);
+                    if (play_ticks%(soldier_tics*20)==0)
+                        battlefield.spawn(PLANT,PLAYER_2);
+                    if (play_ticks%(soldier_tics*24)==0)
+                        battlefield.spawn(GOLEM,PLAYER_2);
+                    if (play_ticks%(soldier_tics*22)==0)
+                        battlefield.spawn(DRAGON,PLAYER_2);
+                  }
+            }
+            else if (battlefield.get_nonplant_unit_count(PLAYER_2) == 0)
               {
-                int soldier_tics=(LEVEL1_SPEED * std::pow(0.9,level-1));
-                if (play_ticks%soldier_tics==0)
-                    battlefield.spawn(SOLDIER,PLAYER_2);
-                if (play_ticks%(soldier_tics*6)==0)
-                    battlefield.spawn(KNIGHT,PLAYER_2);
-                if (play_ticks%(soldier_tics*7)==0)
-                    battlefield.spawn(VETERAN,PLAYER_2);
-                if (play_ticks%(soldier_tics*20)==0)
-                    battlefield.spawn(PLANT,PLAYER_2);
-                if (play_ticks%(soldier_tics*24)==0)
-                    battlefield.spawn(GOLEM,PLAYER_2);
-                if (play_ticks%(soldier_tics*22)==0)
-                    battlefield.spawn(DRAGON,PLAYER_2);
-              }
-            
-            if (play_ticks >= SURVIVAL_TIME) { //you win if you survived
                 winner=PLAYER_1;
                 quit=true;
-            }
+              }
 
 			if (life_bar1.get_life()<=0) {
 				winner=PLAYER_2;

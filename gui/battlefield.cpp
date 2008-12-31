@@ -65,6 +65,22 @@ void BattleField::spawn(UNIT_ID name,PLAYER player,float x) {
 	}
 }
 
+int BattleField::get_unit_count(PLAYER player)
+{
+    int count=0;
+    for (Units::iterator i = units.begin();i!=units.end();i++)
+        if ((*i)->get_player() == player) count++;
+    return count;
+}
+
+int BattleField::get_nonplant_unit_count(PLAYER player)
+{
+    int count=0;
+    for (Units::iterator i = units.begin();i!=units.end();i++)
+        if ((*i)->get_player() == player && (*i)->name != "plant") count++;
+    return count;
+}
+
 void BattleField::draw() {
 	if (++frame_skip_count>FIELD_UPDATE_FRAME_SKIP) {
 		//post collision event
