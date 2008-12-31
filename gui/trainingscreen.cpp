@@ -44,6 +44,8 @@ TrainingScreen::TrainingScreen(const SpriteCollection *spr_coll,const Combinaiso
 	SDL_FreeSurface(text_key_help_surf);
 
 	score_id=ids[3];
+	perfect_id=ids[4];
+	go_id=ids[5];
 
 	this->spr_coll=spr_coll;
 	this->cmb_coll=cmb_coll;
@@ -160,6 +162,12 @@ void TrainingScreen::display_game(SDL_Surface *screen) {
 		SDL_Surface *score_surf=TTF_RenderText_Solid(font,("Level " + number_as_roman(p1_win)+" cleared!!!").c_str(),color);
 		Sprite score_sprite(score_surf,score_id);
 		SDL_FreeSurface(score_surf);
+		SDL_Surface *go_surf=TTF_RenderText_Solid(font,"GAME OVER!",color);
+		Sprite go_sprite(go_surf,go_id);
+		SDL_FreeSurface(go_surf);
+		SDL_Surface *perfect_surf=TTF_RenderText_Solid(font,"PERFECT!",color);
+		Sprite perfect_sprite(perfect_surf,perfect_id);
+		SDL_FreeSurface(perfect_surf);
 
 		quit=false;
 		while (!quit && !quit_game) {
@@ -174,17 +182,23 @@ void TrainingScreen::display_game(SDL_Surface *screen) {
 			
 			//overlay
 			fill_rect_opengl(0,0,SCREEN_W,SCREEN_H,0,0,0,0.7);
-			text_key_help->draw((SCREEN_W-text_key_help->w)/2,50);
-			score_sprite.draw((SCREEN_W-score_sprite.w)/2,(SCREEN_H-score_sprite.h)/2);
+			text_key_help->draw((SCREEN_W-text_key_help->w)/2,SCREEN_H-50-text_key_help->h);
 
 			const Sprite* current_skull=skull.get_next_bitmap();
 			const Sprite* current_hand=hand.get_next_bitmap();
 			if (winner==PLAYER_2) {
-				current_skull->draw(SCREEN_W/2-score_sprite.w/2-80-current_skull->w/2,(SCREEN_H-current_skull->h)/2);
-				current_hand->draw(SCREEN_W/2+score_sprite.w/2+80-current_skull->w/2,(SCREEN_H-current_skull->h)/2);
+                go_sprite.draw((SCREEN_W-go_sprite.w)/2,50);
+				current_skull->draw(SCREEN_W/2-current_skull->w/2,(SCREEN_H-current_skull->h)/2);
 			} else {
-				current_hand->draw(SCREEN_W/2-score_sprite.w/2-80-current_skull->w/2,(SCREEN_H-current_skull->h)/2);
-				current_skull->draw(SCREEN_W/2+score_sprite.w/2+80-current_skull->w/2,(SCREEN_H-current_skull->h)/2);
+                score_sprite.draw((SCREEN_W-score_sprite.w)/2,50);
+                if (life_bar1.get_life() == LIFE_FACTOR)
+                  {
+                    perfect_sprite.draw((SCREEN_W-perfect_sprite.w)/2,60+score_sprite.h);
+                    current_hand->draw(SCREEN_W/2-current_hand->w/2-80,80+score_sprite.h+perfect_sprite.h+current_skull->h);
+                    current_hand->draw(SCREEN_W/2-current_hand->w/2+80,80+score_sprite.h+perfect_sprite.h+current_skull->h);
+                  }
+                else
+                    current_hand->draw(SCREEN_W/2-current_hand->w/2,(SCREEN_H-current_hand->h)/2);
 			}
 
 			SDL_GL_SwapBuffers();
@@ -208,5 +222,6 @@ void TrainingScreen::display_game(SDL_Surface *screen) {
 			while (ticks>(SDL_GetTicks()-1000/FPS)) SDL_Delay(3);
 			ticks=SDL_GetTicks();
 		}
+        if (winner==PLAYER_2) quit_game=true;
 	}
 }

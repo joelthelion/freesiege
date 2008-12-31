@@ -41,7 +41,7 @@ protected:
 	const Sprite *text_key_help;
 	Anim::CycleIterator skull;
 	Anim::CycleIterator hand;
-	TextureId score_id;
+	TextureId score_id ,go_id,perfect_id;
 };
 
 #endif

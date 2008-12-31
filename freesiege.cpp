@@ -95,7 +95,7 @@ int main(int argc, char* argv[]) {
     std::cout<<spr_coll<<std::endl;
 	
 	Background background(&spr_coll);
-	TrainingScreen training_screen(&spr_coll,&cmb_coll,base_dir+"chlorinar.ttf",&texture_ids[200],&background);
+	TrainingScreen training_screen(&spr_coll,&cmb_coll,base_dir+"chlorinar.ttf",&texture_ids[350],&background);
 	GameScreen game_screen(&spr_coll,&cmb_coll,base_dir+"chlorinar.ttf",&texture_ids[200],&background);
 	CombinaisonScreen combi_screen(&spr_coll,&cmb_coll,base_dir+"chlorinar.ttf",&texture_ids[250]);
 	MenuScreen menu_screen(&spr_coll,base_dir+"chlorinar.ttf",&texture_ids[300]);

@@ -20,6 +20,8 @@
 
 #include "unit.h"
 
+#define LIFE_FACTOR 60
+
 class LifeBar {
 public:
 	LifeBar(const SpriteCollection *spr_coll,PLAYER player);

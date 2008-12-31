@@ -23,7 +23,6 @@
 #define LIFE_W 360
 #define LIFE_H 39
 #define LIFE_BORDER 5
-#define LIFE_FACTOR 60
 #define LIFE_DECREASE 0.002
 
 LifeBar::LifeBar(const SpriteCollection *spr_coll,PLAYER player) {
