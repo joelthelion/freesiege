@@ -47,6 +47,7 @@ TrainingScreen::TrainingScreen(const SpriteCollection *spr_coll,const Combinaiso
 	score_id=ids[3];
 	perfect_id=ids[4];
 	go_id=ids[5];
+	ko_id=ids[6];
 
 	this->spr_coll=spr_coll;
 	this->cmb_coll=cmb_coll;
@@ -173,8 +174,12 @@ void TrainingScreen::display_game(SDL_Surface *screen) {
 		SDL_Surface *perfect_surf=TTF_RenderText_Solid(font,"PERFECT!",color);
 		Sprite perfect_sprite(perfect_surf,perfect_id);
 		SDL_FreeSurface(perfect_surf);
+		SDL_Surface *ko_surf=TTF_RenderText_Solid(font,"KO!",color);
+		Sprite ko_sprite(ko_surf,ko_id);
+		SDL_FreeSurface(ko_surf);
 
 		quit=false;
+        bool ko=(life_bar2.get_life() == 0);
         bool perfect=(life_bar1.get_life() == LIFE_FACTOR);
 		while (!quit && !quit_game) {
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -200,6 +205,21 @@ void TrainingScreen::display_game(SDL_Surface *screen) {
                 if (perfect)
                   {
                     perfect_sprite.draw((SCREEN_W-perfect_sprite.w)/2,60+score_sprite.h);
+                    if (ko) {
+                        ko_sprite.draw((SCREEN_W-ko_sprite.w)/2,70+score_sprite.h+perfect_sprite.h);
+                        current_hand->draw(SCREEN_W/2-current_hand->w/2-160,80+score_sprite.h+perfect_sprite.h+current_skull->h);
+                        current_hand->draw(SCREEN_W/2-current_hand->w/2,80+score_sprite.h+perfect_sprite.h+current_skull->h);
+                        current_hand->draw(SCREEN_W/2-current_hand->w/2+160,80+score_sprite.h+perfect_sprite.h+current_skull->h);
+                    }
+                    else
+                      {
+                        current_hand->draw(SCREEN_W/2-current_hand->w/2-80,80+score_sprite.h+perfect_sprite.h+current_skull->h);
+                        current_hand->draw(SCREEN_W/2-current_hand->w/2+80,80+score_sprite.h+perfect_sprite.h+current_skull->h);
+                      }
+                  }
+                else if (ko)
+                  {
+                    ko_sprite.draw((SCREEN_W-ko_sprite.w)/2,70+score_sprite.h+perfect_sprite.h);
                     current_hand->draw(SCREEN_W/2-current_hand->w/2-80,80+score_sprite.h+perfect_sprite.h+current_skull->h);
                     current_hand->draw(SCREEN_W/2-current_hand->w/2+80,80+score_sprite.h+perfect_sprite.h+current_skull->h);
                   }
