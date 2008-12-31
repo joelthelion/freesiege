@@ -24,11 +24,11 @@
 #include "plant.h"
 
 #define FONT_COLOR { 0x77, 0xd1, 0x00, 0 }
-#define LEVEL1_SPEED 150
 #define SURVIVAL_TIME 3000
 
 TrainingScreen::TrainingScreen(const SpriteCollection *spr_coll,const CombinaisonCollection *cmb_coll,const std::string &ttf_path,TextureIds ids,Background *background) {
     level=1;
+    base_speed=150;
 	font=TTF_OpenFont(ttf_path.c_str(),80);
 	font_huge=TTF_OpenFont(ttf_path.c_str(),120);
 	font_tiny=TTF_OpenFont(ttf_path.c_str(),40);
@@ -52,6 +52,25 @@ TrainingScreen::TrainingScreen(const SpriteCollection *spr_coll,const Combinaiso
 	this->spr_coll=spr_coll;
 	this->cmb_coll=cmb_coll;
 	this->background=background;
+}
+
+void TrainingScreen::set_ai_level(MenuScreen::AILEVEL ai_level)
+{
+    switch(ai_level)
+      {
+        case 0:
+            base_speed=500;
+            break;
+        case 1:
+            base_speed=150;
+            break;
+        case 2:
+            base_speed=90;
+            break;
+        case 3:
+            base_speed=60;
+            break;
+      }
 }
 
 TrainingScreen::~TrainingScreen() {
@@ -117,7 +136,7 @@ void TrainingScreen::display_game(SDL_Surface *screen) {
             if (play_ticks < SURVIVAL_TIME) { //you win if you survived
                 if (not foreground.p2_flower or ticks%4==0) //the flower randomly slows the computer
                   {
-                    int soldier_tics=(LEVEL1_SPEED * std::pow(0.9,level-1));
+                    int soldier_tics=(base_speed * std::pow(0.9,level-1));
                     if (play_ticks%soldier_tics==0)
                         battlefield.spawn(SOLDIER,PLAYER_2);
                     if (play_ticks%(soldier_tics*6)==0)

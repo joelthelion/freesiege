@@ -114,6 +114,7 @@ int main(int argc, char* argv[]) {
             music_coll.play_music("intro");
 		} else if (selection==MenuScreen::TRAINING) {
             music_coll.play_random_music();
+            training_screen.set_ai_level(menu_screen.ai_level);
 			training_screen.display_game(screen);
             music_coll.play_music("intro");
 		} else std::cerr<<"unknown selection "<<selection<<std::endl;

@@ -40,8 +40,11 @@ public:
 private:
 	typedef std::vector<TitleSprite*> TitleSprites;
 	
+    void update_text();
+    std::string ttf_path;
 	TitleSprites title_sprites;
 	TitleSprites::const_iterator selected;
+    TextureIds ids;
 };
 
 #endif

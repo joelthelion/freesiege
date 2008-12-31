@@ -20,14 +20,17 @@
 
 #include "background.h"
 #include "combinaisoncollection.h"
+#include "menuscreen.h"
 
 class TrainingScreen {
 public:
 	TrainingScreen(const SpriteCollection *spr_coll,const CombinaisonCollection *cmb_coll,const std::string &ttf_path,TextureIds ids,Background *background);
 	~TrainingScreen();
 	void display_game(SDL_Surface *screen);
+    void set_ai_level(MenuScreen::AILEVEL);
 protected:
     int level;
+    int base_speed;
 	const SpriteCollection *spr_coll;
 	const CombinaisonCollection *cmb_coll;
 	Background *background;

@@ -27,6 +27,10 @@ public:
 	MenuScreen(const SpriteCollection *spr_coll,const std::string &ttf_path,TextureIds ids);
 	~MenuScreen();
 	bool display_menu(SDL_Surface *screen,SELECTION &selection);
+
+    //Options
+    enum AILEVEL {EASY,NORMAL,HARD,EXTREME};
+    AILEVEL ai_level;
 private:
 	const SpriteCollection *spr_coll;
 	Menu *key_menu;

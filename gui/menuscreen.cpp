@@ -47,8 +47,10 @@ MenuScreen::MenuScreen(const SpriteCollection *spr_coll,const std::string &ttf_p
 
 	//option menu
 	titles.clear();
+    ai_level=NORMAL;
+	titles.push_back("AI Level: Knight");
 	titles.push_back("keys");
-	titles.push_back("sound");
+	titles.push_back("turn sound off");
 	titles.push_back("fullscreen");
 	titles.push_back("return");
 	option_menu=new Menu(titles,ttf_path,&ids[0]);
@@ -144,10 +146,29 @@ bool MenuScreen::display_menu(SDL_Surface *screen,SELECTION &selection) {
 						}
 					} else if (current_menu==option_menu) {
 						switch (current_menu->get_selected()->n) {
-						case 0://keys
+                        case 0://ai level
+                            switch (ai_level) {
+                              case EASY:
+                                ai_level=NORMAL;
+								current_menu->get_selected()->title="AI Level: Knight";
+                                break;
+                              case NORMAL:
+                                ai_level=HARD;
+								current_menu->get_selected()->title="AI Level: Galaad the Righteous";
+                                break;
+                              case HARD:
+                                ai_level=EXTREME;
+								current_menu->get_selected()->title="AI Level: Morgoth the Cruel";
+                                break;
+                              case EXTREME:
+                                ai_level=EASY;
+								current_menu->get_selected()->title="AI Level: Farmer";
+                                break; }
+                            break;
+						case 1://keys
 							menus.push(key_menu);
 							break;
-						case 1://Sound
+						case 2://Sound
 							if (Mix_PausedMusic())
 							{
 								Mix_ResumeMusic();
@@ -159,7 +180,7 @@ bool MenuScreen::display_menu(SDL_Surface *screen,SELECTION &selection) {
 								current_menu->get_selected()->title="Turn sound on";
 							}
 							break;
-						case 3://return
+						case 4://return
 							menus.pop();
 							break;
 						default:
