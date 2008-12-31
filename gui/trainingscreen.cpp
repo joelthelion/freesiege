@@ -37,16 +37,10 @@ TrainingScreen::TrainingScreen(const SpriteCollection *spr_coll,const Combinaiso
 	}
 
 	SDL_Color color=FONT_COLOR;
-	SDL_Surface *text_p1_won_surf=TTF_RenderText_Solid(font_huge,"PL I WON!!!", color);
-	SDL_Surface *text_p2_won_surf=TTF_RenderText_Solid(font_huge,"PL II WON!!!", color);
 	SDL_Surface *text_key_help_surf=TTF_RenderText_Solid(font_tiny,"Space to continue ... Esc to quit", color);
-	text_p1_won=new Sprite(text_p1_won_surf,ids[0]);
-	text_p2_won=new Sprite(text_p2_won_surf,ids[1]);
 	text_key_help=new Sprite(text_key_help_surf,ids[2]);
 	skull=spr_coll->get_anim_cycle_iterator("skull",0.1);
 	hand=spr_coll->get_anim_cycle_iterator("hand",0.1);
-	SDL_FreeSurface(text_p1_won_surf);
-	SDL_FreeSurface(text_p2_won_surf);
 	SDL_FreeSurface(text_key_help_surf);
 
 	score_id=ids[3];
@@ -57,8 +51,6 @@ TrainingScreen::TrainingScreen(const SpriteCollection *spr_coll,const Combinaiso
 }
 
 TrainingScreen::~TrainingScreen() {
-	delete text_p1_won;
-	delete text_p2_won;
 	delete text_key_help;
 	
 	TTF_CloseFont(font);
@@ -152,23 +144,20 @@ void TrainingScreen::display_game(SDL_Surface *screen) {
 		}
 
 		//final screen
-		const Sprite *winning_message=NULL;
 		switch (winner) {
 		case PLAYER_1:
 			p1_win++;
             level++;
-			winning_message=text_p1_won;
 			break;
 		case PLAYER_2:
 			p2_win++;
-			winning_message=text_p2_won;
 			break;
 		default:
 			break;
 		}
 		
 		//render score
-		SDL_Surface *score_surf=TTF_RenderText_Solid(font,(number_as_roman(p1_win)+" : "+number_as_roman(p2_win)).c_str(),color);
+		SDL_Surface *score_surf=TTF_RenderText_Solid(font,("Level " + number_as_roman(p1_win)+" cleared!!!").c_str(),color);
 		Sprite score_sprite(score_surf,score_id);
 		SDL_FreeSurface(score_surf);
 
@@ -185,8 +174,7 @@ void TrainingScreen::display_game(SDL_Surface *screen) {
 			
 			//overlay
 			fill_rect_opengl(0,0,SCREEN_W,SCREEN_H,0,0,0,0.7);
-			winning_message->draw((SCREEN_W-winning_message->w)/2,50);
-			text_key_help->draw((SCREEN_W-text_key_help->w)/2,SCREEN_H-50-text_key_help->h);
+			text_key_help->draw((SCREEN_W-text_key_help->w)/2,50);
 			score_sprite.draw((SCREEN_W-score_sprite.w)/2,(SCREEN_H-score_sprite.h)/2);
 
 			const Sprite* current_skull=skull.get_next_bitmap();
