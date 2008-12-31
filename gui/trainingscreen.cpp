@@ -79,7 +79,7 @@ void TrainingScreen::display_game(SDL_Surface *screen) {
 		Foreground foreground(spr_coll);
 		BattleField battlefield(spr_coll,&life_bar1,&life_bar2,&foreground);
 		Board board1(spr_coll,cmb_coll,&battlefield,PLAYER_1);
-		
+        bool repeat=false; //to avoid duplicate unit creation during the flower
 		//main loop
 		while (!quit && !quit_game) {
 			//draw
@@ -113,19 +113,22 @@ void TrainingScreen::display_game(SDL_Surface *screen) {
 				}
 			}
             //Spawn computer units
-            int soldier_tics=(LEVEL1_SPEED * std::pow(0.9,level-1));
-            if (play_ticks%soldier_tics==0)
-                battlefield.spawn(SOLDIER,PLAYER_2);
-            if (play_ticks%(soldier_tics*6)==0)
-                battlefield.spawn(KNIGHT,PLAYER_2);
-            if (play_ticks%(soldier_tics*7)==0)
-                battlefield.spawn(VETERAN,PLAYER_2);
-            if (play_ticks%(soldier_tics*20)==0)
-                battlefield.spawn(PLANT,PLAYER_2);
-            if (play_ticks%(soldier_tics*24)==0)
-                battlefield.spawn(GOLEM,PLAYER_2);
-            if (play_ticks%(soldier_tics*22)==0)
-                battlefield.spawn(DRAGON,PLAYER_2);
+            if (not repeat)
+              {
+                int soldier_tics=(LEVEL1_SPEED * std::pow(0.9,level-1));
+                if (play_ticks%soldier_tics==0)
+                    battlefield.spawn(SOLDIER,PLAYER_2);
+                if (play_ticks%(soldier_tics*6)==0)
+                    battlefield.spawn(KNIGHT,PLAYER_2);
+                if (play_ticks%(soldier_tics*7)==0)
+                    battlefield.spawn(VETERAN,PLAYER_2);
+                if (play_ticks%(soldier_tics*20)==0)
+                    battlefield.spawn(PLANT,PLAYER_2);
+                if (play_ticks%(soldier_tics*24)==0)
+                    battlefield.spawn(GOLEM,PLAYER_2);
+                if (play_ticks%(soldier_tics*22)==0)
+                    battlefield.spawn(DRAGON,PLAYER_2);
+              }
             
             if (play_ticks >= SURVIVAL_TIME) { //you win if you survived
                 winner=PLAYER_1;
@@ -142,7 +145,12 @@ void TrainingScreen::display_game(SDL_Surface *screen) {
 
 			while (ticks>(SDL_GetTicks()-1000/FPS)) SDL_Delay(3);
 			ticks=SDL_GetTicks();
-            play_ticks++;
+            repeat=true;
+            if (not foreground.p2_flower or ticks%4==0) //the flower randomly slows the computer
+              {
+                play_ticks++;
+                repeat=false;
+              }
 		}
 
 		//final screen
