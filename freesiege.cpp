@@ -28,7 +28,7 @@ SDL_Surface *screen;
 bool display_usage=false;
 void usage() {
 	if (display_usage) return;
-	std::cout<<"elements [--windowed] [--no-sound] [--help]"<<std::endl;
+	std::cout<<"freesiege [--windowed] [--no-sound] [--help]"<<std::endl;
 	std::cout<<"  --windowed: launch the game using a 800x600 window"<<std::endl;
 	std::cout<<"  --no-sound: turn off sound"<<std::endl;
 	std::cout<<"  --help: display this help"<<std::endl;
