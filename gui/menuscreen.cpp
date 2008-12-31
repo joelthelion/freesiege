@@ -39,6 +39,7 @@ MenuScreen::MenuScreen(const SpriteCollection *spr_coll,const std::string &ttf_p
 	Menu::Titles titles;
 	//titles.push_back("human versus cpu");
 	titles.push_back("human versus human");
+	titles.push_back("survival mode");
 	titles.push_back("combinaisons");
 	titles.push_back("options");
 	titles.push_back("quit");
@@ -123,14 +124,18 @@ bool MenuScreen::display_menu(SDL_Surface *screen,SELECTION &selection) {
 							selection=TWO_PLAYERS;
 							return false;
 							break;
-						case 1://combinaisons
+						case 1://training mode
+							selection=TRAINING;
+							return false;
+							break;
+						case 2://combinaisons
 							selection=COMBINAISONS;
 							return false;
 							break;
-						case 2://options
+						case 3://options
 							menus.push(option_menu);
 							break;
-						case 3://quit
+						case 4://quit
 							selection=QUIT;
 							return true;
 							break;

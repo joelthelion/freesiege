@@ -18,6 +18,7 @@
 
 #include "utils.h"
 #include "param.h"
+#include "trainingscreen.h"
 #include "gamescreen.h"
 #include "menuscreen.h"
 #include "combinaisonscreen.h"
@@ -94,6 +95,7 @@ int main(int argc, char* argv[]) {
     std::cout<<spr_coll<<std::endl;
 	
 	Background background(&spr_coll);
+	TrainingScreen training_screen(&spr_coll,&cmb_coll,base_dir+"chlorinar.ttf",&texture_ids[200],&background);
 	GameScreen game_screen(&spr_coll,&cmb_coll,base_dir+"chlorinar.ttf",&texture_ids[200],&background);
 	CombinaisonScreen combi_screen(&spr_coll,&cmb_coll,base_dir+"chlorinar.ttf",&texture_ids[250]);
 	MenuScreen menu_screen(&spr_coll,base_dir+"chlorinar.ttf",&texture_ids[300]);
@@ -109,6 +111,10 @@ int main(int argc, char* argv[]) {
 		} else if (selection==MenuScreen::COMBINAISONS) {
             music_coll.play_music("combi");
 			combi_screen.display_combinaisons(screen);
+            music_coll.play_music("intro");
+		} else if (selection==MenuScreen::TRAINING) {
+            music_coll.play_random_music();
+			training_screen.display_game(screen);
             music_coll.play_music("intro");
 		} else std::cerr<<"unknown selection "<<selection<<std::endl;
 	}

@@ -15,25 +15,33 @@
 //	You should have received a copy of the GNU General Public License
 //	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-#ifndef __MENUSCREEN_H
-#define __MENUSCREEN_H
+#ifndef __TRAININGSCREEN_H
+#define __TRAININGSCREEN_H
 
-#include "spritecollection.h"
-#include "menu.h"
+#include "background.h"
+#include "combinaisoncollection.h"
 
-class MenuScreen {
+class TrainingScreen {
 public:
-	enum SELECTION {QUIT,TWO_PLAYERS,TRAINING,COMBINAISONS};
-	MenuScreen(const SpriteCollection *spr_coll,const std::string &ttf_path,TextureIds ids);
-	~MenuScreen();
-	bool display_menu(SDL_Surface *screen,SELECTION &selection);
-private:
+	TrainingScreen(const SpriteCollection *spr_coll,const CombinaisonCollection *cmb_coll,const std::string &ttf_path,TextureIds ids,Background *background);
+	~TrainingScreen();
+	void display_game(SDL_Surface *screen);
+protected:
+    int level;
 	const SpriteCollection *spr_coll;
-	Menu *key_menu;
-	Menu *main_menu;
-	Menu *option_menu;
-	typedef std::stack<Menu*> Menus;
-	Menus menus;
+	const CombinaisonCollection *cmb_coll;
+	Background *background;
+
+	TTF_Font *font;
+	TTF_Font *font_huge;
+	TTF_Font *font_tiny;
+
+	const Sprite *text_p1_won;
+	const Sprite *text_p2_won;
+	const Sprite *text_key_help;
+	Anim::CycleIterator skull;
+	Anim::CycleIterator hand;
+	TextureId score_id;
 };
 
 #endif

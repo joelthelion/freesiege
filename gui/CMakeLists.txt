@@ -8,6 +8,7 @@ SET(FS_GUI_SRCS
     gui/board.cpp
     gui/menu.cpp
     gui/gamescreen.cpp
+    gui/trainingscreen.cpp
     gui/menuscreen.cpp
     gui/combinaisonscreen.cpp
 )
