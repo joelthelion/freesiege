@@ -79,7 +79,6 @@ void TrainingScreen::display_game(SDL_Surface *screen) {
 		Foreground foreground(spr_coll);
 		BattleField battlefield(spr_coll,&life_bar1,&life_bar2,&foreground);
 		Board board1(spr_coll,cmb_coll,&battlefield,PLAYER_1);
-        bool repeat=false; //to avoid duplicate unit creation during the flower
 		//main loop
 		while (!quit && !quit_game) {
 			//draw
@@ -113,7 +112,7 @@ void TrainingScreen::display_game(SDL_Surface *screen) {
 				}
 			}
             //Spawn computer units
-            if (not repeat)
+            if (not foreground.p2_flower or ticks%4==0) //the flower randomly slows the computer
               {
                 int soldier_tics=(LEVEL1_SPEED * std::pow(0.9,level-1));
                 if (play_ticks%soldier_tics==0)
@@ -145,12 +144,7 @@ void TrainingScreen::display_game(SDL_Surface *screen) {
 
 			while (ticks>(SDL_GetTicks()-1000/FPS)) SDL_Delay(3);
 			ticks=SDL_GetTicks();
-            repeat=true;
-            if (not foreground.p2_flower or ticks%4==0) //the flower randomly slows the computer
-              {
-                play_ticks++;
-                repeat=false;
-              }
+            play_ticks++;
 		}
 
 		//final screen
