@@ -75,7 +75,11 @@ void Knight::handle_message(const Message &mess,MessageQueue *mess_queue) {
 				collide=true;
 				state=FIGHT; anim_knight.set_speed(0.2);
 				mess_queue->push(Message(Message::EVENT_ENDFIGHT,this,this,5,Message::PRIORITY_NORMAL));
-				mess_queue->push(Message(Message::EVENT_ATTACK,mess.sender,this,NO_DELAY,Message::PRIORITY_NORMAL,rand()%Damage));
+                if (mess.sender->name == "soldier")
+                    mess_queue->push(Message(Message::EVENT_ATTACK,mess.sender,this,
+                                NO_DELAY,Message::PRIORITY_NORMAL,rand()%Damage + Damage/2)); //special bonus against basic soldiers
+                else
+                    mess_queue->push(Message(Message::EVENT_ATTACK,mess.sender,this,NO_DELAY,Message::PRIORITY_NORMAL,rand()%Damage));
 				if (mess.sender->name == "veteran"||mess.sender->name == "golem"||mess.sender->name == "plant") this->blocked=true;
 			}
 			break;
