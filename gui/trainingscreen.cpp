@@ -184,7 +184,7 @@ void TrainingScreen::display_game(SDL_Surface *screen) {
 		}
 		
 		//render score
-		SDL_Surface *score_surf=TTF_RenderText_Solid(font,("Level " + number_as_roman(level)+" cleared!!!").c_str(),color);
+		SDL_Surface *score_surf=TTF_RenderText_Solid(font,("Level " + number_as_roman(level-1)+" cleared!!!").c_str(),color);
 		Sprite score_sprite(score_surf,score_id);
 		SDL_FreeSurface(score_surf);
 		SDL_Surface *go_surf=TTF_RenderText_Solid(font,"GAME OVER!",color);
