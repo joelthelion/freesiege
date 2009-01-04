@@ -105,6 +105,7 @@ void Knight::handle_message(const Message &mess,MessageQueue *mess_queue) {
 			break;
 		case Message::EVENT_ENDFIGHT:
 			state=WALK; anim_knight.set_speed(0.4);
+            blocked=false;
 			break;
 		case Message::EVENT_ATTACK:
 			life-=mess.data;
