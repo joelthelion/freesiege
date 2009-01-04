@@ -27,7 +27,6 @@
 #define SURVIVAL_TIME 3000
 
 TrainingScreen::TrainingScreen(const SpriteCollection *spr_coll,const CombinaisonCollection *cmb_coll,const std::string &ttf_path,TextureIds ids,Background *background) {
-    level=1;
     base_speed=150;
 	font=TTF_OpenFont(ttf_path.c_str(),80);
 	font_huge=TTF_OpenFont(ttf_path.c_str(),120);
@@ -84,6 +83,7 @@ TrainingScreen::~TrainingScreen() {
 void TrainingScreen::display_game(SDL_Surface *screen) {
 	int p1_win=0;
 	int p2_win=0;
+    level=1;
 
 	bool quit_game=false;
 	SDL_Event event;
@@ -184,7 +184,7 @@ void TrainingScreen::display_game(SDL_Surface *screen) {
 		}
 		
 		//render score
-		SDL_Surface *score_surf=TTF_RenderText_Solid(font,("Level " + number_as_roman(p1_win)+" cleared!!!").c_str(),color);
+		SDL_Surface *score_surf=TTF_RenderText_Solid(font,("Level " + number_as_roman(level)+" cleared!!!").c_str(),color);
 		Sprite score_sprite(score_surf,score_id);
 		SDL_FreeSurface(score_surf);
 		SDL_Surface *go_surf=TTF_RenderText_Solid(font,"GAME OVER!",color);
