@@ -94,11 +94,12 @@ int main(int argc, char* argv[]) {
 	SpriteCollection spr_coll(base_dir+"sprites.cfg",base_dir+"anims.cfg",base_dir,&texture_ids[0]);
     std::cout<<spr_coll<<std::endl;
 	
+    const std::string font_name="arfmoochikncheez.ttf";
 	Background background(&spr_coll);
-	TrainingScreen training_screen(&spr_coll,&cmb_coll,base_dir+"chlorinar.ttf",&texture_ids[350],&background);
-	GameScreen game_screen(&spr_coll,&cmb_coll,base_dir+"chlorinar.ttf",&texture_ids[200],&background);
-	CombinaisonScreen combi_screen(&spr_coll,&cmb_coll,base_dir+"chlorinar.ttf",&texture_ids[250]);
-	MenuScreen menu_screen(&spr_coll,base_dir+"chlorinar.ttf",&texture_ids[300]);
+	TrainingScreen training_screen(&spr_coll,&cmb_coll,base_dir+font_name,&texture_ids[350],&background);
+	GameScreen game_screen(&spr_coll,&cmb_coll,base_dir+font_name,&texture_ids[200],&background);
+	CombinaisonScreen combi_screen(&spr_coll,&cmb_coll,base_dir+font_name,&texture_ids[250]);
+	MenuScreen menu_screen(&spr_coll,base_dir+font_name,&texture_ids[300]);
 
 	//main loop
     music_coll.play_music("intro");
