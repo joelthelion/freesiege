@@ -40,7 +40,7 @@ MenuScreen::MenuScreen(const SpriteCollection *spr_coll,const std::string &ttf_p
 	//titles.push_back("human versus cpu");
 	titles.push_back("human versus human");
 	titles.push_back("survival mode");
-	titles.push_back("combinaisons");
+	titles.push_back("patterns");
 	titles.push_back("options");
 	titles.push_back("quit");
 	main_menu=new Menu(titles,ttf_path,&ids[10]);
