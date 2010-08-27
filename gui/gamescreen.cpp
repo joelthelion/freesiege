@@ -57,9 +57,18 @@ GameScreen::~GameScreen() {
 	delete text_p2_won;
 	delete text_key_help;
 	
-	TTF_CloseFont(font);
-	TTF_CloseFont(font_huge);
-	TTF_CloseFont(font_tiny);
+ 	if(TTF_WasInit()) {
+ 		if(font)
+ 			TTF_CloseFont(font);
+ 			font = NULL;
+ 		if(font_huge)
+ 			TTF_CloseFont(font_huge);
+ 			font_huge = NULL;
+ 		if(font_tiny)
+ 			TTF_CloseFont(font_tiny);
+ 			font_tiny = NULL;
+	}
+
 }
 
 void GameScreen::display_game(SDL_Surface *screen) {

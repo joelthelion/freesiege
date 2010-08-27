@@ -75,9 +75,17 @@ void TrainingScreen::set_ai_level(MenuScreen::AILEVEL ai_level)
 TrainingScreen::~TrainingScreen() {
 	delete text_key_help;
 	
-	TTF_CloseFont(font);
-	TTF_CloseFont(font_huge);
-	TTF_CloseFont(font_tiny);
+ 	if(TTF_WasInit()) {
+ 		if(font)
+ 			TTF_CloseFont(font);
+ 			font = NULL;
+ 		if(font_huge)
+ 			TTF_CloseFont(font_huge);
+ 			font_huge = NULL;
+ 		if(font_tiny)
+ 			TTF_CloseFont(font_tiny);
+ 			font_tiny = NULL;
+ 	}
 }
 
 void TrainingScreen::display_game(SDL_Surface *screen) {
