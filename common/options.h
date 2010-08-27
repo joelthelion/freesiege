@@ -1,7 +1,3 @@
-//	This file is part of freesiege program <http://freesiege.sourceforge.net>.
-//	Copyright (C) 2007 Pierre Gueth <pierregueth@users.sourceforge.net>
-//	                   Joel Schaerer <joelschaerer@users.sourceforge.net>
-//
 //	This program is free software: you can redistribute it and/or modify
 //	it under the terms of the GNU General Public License as published by
 //	the Free Software Foundation, either version 3 of the License, or
@@ -15,20 +11,24 @@
 //	You should have received a copy of the GNU General Public License
 //	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-#ifndef __UTILS_H
-#define __UTILS_H
+#ifndef __OPTIONS_H
+#define __OPTIONS_H
 
-#include "config.h"
-#include "param.h"
-
-//general purpose function
-std::string number_as_roman(int iNumber);
-std::string get_base_dir();
-inline float factor(float a=0.0) { return float(a+(1.0-a)*rand()/RAND_MAX); }
-
-//init function
-void init_random_gen();
-
-std::string config_file();
+class Options {
+	public:
+		static void save();
+		static void load();
+		static void setSound(bool s);
+		static void setSoundSession(bool s);
+		static void setFullscreen(bool f);
+		static void handleArguments(int argc, char* argv[]);
+		static bool fullscreenOn();
+		static bool soundOn();
+	private:
+		static bool soundConfig;		//what is in the config file
+		static bool fullscreenConfig;	//what is in the config file
+		static bool fullscreen;			//the value for this instance (can be modified by command line arguments)
+		static bool sound;				//the value for this instance (can be modified by command line arguments)
+};
 
 #endif

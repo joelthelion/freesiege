@@ -21,12 +21,11 @@ class MusicCollection {
 friend std::ostream &operator<<(std::ostream &os,const MusicCollection &collection);
 public:
     typedef std::map<std::string,Mix_Music*> Coll;
-    MusicCollection(const std::string &path,const std::string &base_dir,bool sound);
+    MusicCollection(const std::string &path,const std::string &base_dir);
     ~MusicCollection();
     void play_music(const std::string &name);
     void play_random_music();
 private:
-    bool sound;
     Coll coll;
 };
 

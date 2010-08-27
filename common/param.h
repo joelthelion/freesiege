@@ -24,4 +24,18 @@
 
 #define FPS 40
 
+#ifdef WINDOWS
+	#define CONFIG_NOM "freesiege.ini"
+	#define SEP "\\"
+	#define DOSS_PREFS "USERPROFILE"
+#else
+	#ifdef MACOS9
+		#define CONFIG_NOM "Free Siege Prefs"
+	#else
+		#define CONFIG_NOM ".freesiege"
+		#define SEP "/"
+		#define DOSS_PREFS "HOME"
+	#endif
+#endif
+
 #endif

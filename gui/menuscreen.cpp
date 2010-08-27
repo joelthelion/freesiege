@@ -18,6 +18,7 @@
 #include "menuscreen.h"
 
 #include "param.h"
+#include "options.h"
 
 #define MENUSCREEN_BASE_Y 150
 #define MENUSCREEN_BASE_X 70
@@ -169,15 +170,17 @@ bool MenuScreen::display_menu(SDL_Surface *screen,SELECTION &selection) {
 							menus.push(key_menu);
 							break;
 						case 2://Sound
-							if (Mix_PausedMusic())
+							if (!Options::soundOn())
 							{
 								Mix_ResumeMusic();
-								current_menu->get_selected()->title="Turn sound off";
+								Options::setSound(true);
+								current_menu->get_selected()->title="Sound: on";
 							}
 							else
 							{
 								Mix_PauseMusic();
-								current_menu->get_selected()->title="Turn sound on";
+								Options::setSound(false);
+								current_menu->get_selected()->title="Sound off";
 							}
 							break;
 						case 4://return

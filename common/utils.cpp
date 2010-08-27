@@ -16,6 +16,9 @@
 //	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 #include "utils.h"
+#include <iostream>
+
+using namespace std;
 
 // written by Ste Cork, free for any and all use.
 // and patched by us
@@ -56,6 +59,19 @@ std::string number_as_roman(int iNumber) {
 		}
 	}
 	return result;
+}
+
+std::string config_file() {
+	std::string conf_path = string(CONFIG_NOM);
+#ifndef MACOS9
+	if(getenv(DOSS_PREFS) != NULL) {
+		conf_path = "";
+		conf_path += getenv(DOSS_PREFS);
+		conf_path += SEP;
+		conf_path += CONFIG_NOM;
+	}
+#endif
+	return conf_path;
 }
 
 // our work

@@ -23,6 +23,8 @@
 #include "menuscreen.h"
 #include "combinaisonscreen.h"
 #include "musiccollection.h"
+#include "options.h"
+
 
 SDL_Surface *screen;
 
@@ -39,19 +41,19 @@ void usage() {
 
 int main(int argc, char* argv[]) {
 	//parameters parsing
-	bool sound=true;
-	bool fullscreen=true;
+	Options::load();
 	std::string param;
 	for (int k=1; k<argc; k++) {
 		param=std::string(argv[k]);
-		if (param=="--no-sound") sound=false;
-		else if (param=="--windowed") fullscreen=false;
+		if (param=="--no-sound") ;
+		else if (param=="--windowed") ;
 		else if (param=="--help") usage();
 		else {
 			std::cerr<<"unknown parameter: "<<argv[k]<<std::endl;
 			usage();
 		}
 	}
+	Options::handleArguments(argc,argv);
 
 	//random init
 	init_random_gen();
@@ -62,7 +64,7 @@ int main(int argc, char* argv[]) {
 		return 1;
 	}
 
-	if (fullscreen) screen=SDL_SetVideoMode(SCREEN_W,SCREEN_H,SCREEN_DEPTH,SDL_OPENGL|SDL_DOUBLEBUF|SDL_FULLSCREEN);
+	if (Options::fullscreenOn()) screen=SDL_SetVideoMode(SCREEN_W,SCREEN_H,SCREEN_DEPTH,SDL_OPENGL|SDL_DOUBLEBUF|SDL_FULLSCREEN);
 	else screen=SDL_SetVideoMode(SCREEN_W,SCREEN_H,SCREEN_DEPTH,SDL_OPENGL|SDL_DOUBLEBUF);
 	if (!screen) {
 		std::cerr<<"video init failed..."<<std::endl;
@@ -78,10 +80,10 @@ int main(int argc, char* argv[]) {
 		return 1;
 	}
 
-	if (sound) {
+	if (Options::soundOn()) {
 		if (Mix_OpenAudio(44100,MIX_DEFAULT_FORMAT,2,1024)==-1) {
 			std::cerr<<"mixer init failed..."<<Mix_GetError()<<std::endl;
-			sound=false;
+			Options::setSoundSession(false);
 		}
 	}
 	
@@ -89,7 +91,7 @@ int main(int argc, char* argv[]) {
 	//object init	
 	CombinaisonCollection cmb_coll(base_dir+"combi.cfg");	
     std::cout<<cmb_coll<<std::endl;
-    MusicCollection music_coll(base_dir+"musics.cfg",base_dir,sound);
+    MusicCollection music_coll(base_dir+"musics.cfg",base_dir);
     std::cout<<music_coll<<std::endl;
 	SpriteCollection spr_coll(base_dir+"sprites.cfg",base_dir+"anims.cfg",base_dir,&texture_ids[0]);
     std::cout<<spr_coll<<std::endl;
@@ -122,6 +124,7 @@ int main(int argc, char* argv[]) {
 	}
 
 
+	Options::save();
 	TTF_Quit();
 	SDL_Quit();
 	return 0;

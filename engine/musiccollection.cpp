@@ -15,19 +15,21 @@
 //	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 #include "config.h"
+#include "options.h"
 
 #include "musiccollection.h"
 
-MusicCollection::MusicCollection(const std::string &path,const std::string &base_dir,bool sound) {
-    this->sound=false;
+MusicCollection::MusicCollection(const std::string &path,const std::string &base_dir) {
     if (Mix_OpenAudio(44100,MIX_DEFAULT_FORMAT,2,1024)==-1) {
         std::cerr<<"mixer init failed..."<<Mix_GetError()<<std::endl;
+        Options::setSoundSession(false);
         return;
     }
 
 	std::ifstream file(path.c_str());
 	if (file.rdstate()) {
 		std::cerr<<"cannot find music config file "<<path<<std::endl;
+        Options::setSoundSession(false);		
 		return;
 	}
     
@@ -55,7 +57,6 @@ MusicCollection::MusicCollection(const std::string &path,const std::string &base
 		file>>line;
 	}
 
-    this->sound=sound;
     Mix_VolumeMusic(MIX_MAX_VOLUME);
 }
 
@@ -65,7 +66,7 @@ MusicCollection::~MusicCollection() {
 }
 
 void MusicCollection::play_music(const std::string &name) {
-    if (!sound) return;
+    if (!Options::soundOn()) return;
 
     Coll::iterator selection=coll.find(name);
     if (selection!=coll.end()) {
@@ -74,7 +75,7 @@ void MusicCollection::play_music(const std::string &name) {
 }
 
 void MusicCollection::play_random_music() {
-   if (!sound || coll.empty()) return;
+   if (!Options::soundOn() || coll.empty()) return;
 
    int selection=rand()%coll.size();
    Coll::const_iterator iter=coll.begin();
@@ -89,7 +90,7 @@ void MusicCollection::play_random_music() {
 }
 
 std::ostream &operator<<(std::ostream &os,const MusicCollection &collection) {
-    if (!collection.sound) return os<<"sound disabled!!";
+    if (!Options::soundOn()) return os<<"sound disabled!!";
 
     if (collection.coll.empty()) {
       os<<"no musics!!";
