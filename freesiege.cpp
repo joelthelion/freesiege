@@ -96,7 +96,7 @@ int main(int argc, char* argv[]) {
 	SpriteCollection spr_coll(base_dir+"sprites.cfg",base_dir+"anims.cfg",base_dir,&texture_ids[0]);
     std::cout<<spr_coll<<std::endl;
 	
-    const std::string font_name="arfmoochikncheez.ttf";
+    const std::string font_name="Swift.ttf";
 	Background background(&spr_coll);
 	TrainingScreen training_screen(&spr_coll,&cmb_coll,base_dir+font_name,&texture_ids[350],&background);
 	GameScreen game_screen(&spr_coll,&cmb_coll,base_dir+font_name,&texture_ids[200],&background);

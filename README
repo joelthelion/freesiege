@@ -2,6 +2,7 @@ This is FREESIEGE game.
 
 Every source file in this archive is distributed under the GPL (GNU Public Licence) and Coyrighted (c) 2007 Pierre Gueth <pierregueth@users.sourceforge.net> and Joel Schaerer <joelschaerer@users.sourceforge.net>.
 Every music or sound file in this archive is distributed under the Creative Commons "Paternité-Pas d'Utilisation Commerciale-Partage" and Coyrighted (c)2007 Charles Virot <interlagos21@users.sourceforge.net>.
+The font Swift is under GPLv2.
 
 To build to binaries:
 -Install SDL SDL_ttf and SDL_mixer libraries (including developement files).
@@ -14,4 +15,4 @@ To build to binaries:
 
 -If you liked this game, a small feedback will give us a lot of courage.
 
-For more information, feedback or feature request about the game, go to <http://github.com/MCMic/freesiege>.
+For more information, feedback or feature request about the game, go to <http://github.com/MCMic/freesiege> .

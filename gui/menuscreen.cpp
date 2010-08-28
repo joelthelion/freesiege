@@ -39,21 +39,21 @@ MenuScreen::MenuScreen(const SpriteCollection *spr_coll,const std::string &ttf_p
 	//main menu
 	Menu::Titles titles;
 	//titles.push_back("human versus cpu");
-	titles.push_back("human versus human");
-	titles.push_back("survival mode");
-	titles.push_back("patterns");
-	titles.push_back("options");
-	titles.push_back("quit");
+	titles.push_back("Human versus human");
+	titles.push_back("Survival mode");
+	titles.push_back("Patterns");
+	titles.push_back("Options");
+	titles.push_back("Quit");
 	main_menu=new Menu(titles,ttf_path,&ids[10]);
 
 	//option menu
 	titles.clear();
     ai_level=NORMAL;
 	titles.push_back("AI Level: Knight");
-	titles.push_back("keys");
-	titles.push_back("turn sound off");
-	titles.push_back("fullscreen");
-	titles.push_back("return");
+	titles.push_back("Keys");
+	titles.push_back(Options::soundOn()?"Sound: on":"Sound: off");
+	titles.push_back("Fullscreen");
+	titles.push_back("Return");
 	option_menu=new Menu(titles,ttf_path,&ids[0]);
 
 	titles.clear();
@@ -180,7 +180,7 @@ bool MenuScreen::display_menu(SDL_Surface *screen,SELECTION &selection) {
 							{
 								Mix_PauseMusic();
 								Options::setSound(false);
-								current_menu->get_selected()->title="Sound off";
+								current_menu->get_selected()->title="Sound: off";
 							}
 							break;
 						case 4://return
