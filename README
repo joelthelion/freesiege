@@ -7,11 +7,11 @@ To build to binaries:
 -Install SDL SDL_ttf and SDL_mixer libraries (including developement files).
 -Install cmake program
 -Open a terminal and go to the directory where you downloaded the source archive
--Type "ccmake ." to configure the build as your wish and generate the Makefile
+-Type "cmake ." to configure the build and generate the Makefile
 -Type "make" in this directory.
--If everything went well, you should have two binaries called elements (the game) and fight (the debug program).
+-If everything went well, you should have two binaries called freesiege (the game) and fight (the debug program).
 -Enjoy!!!!
--If you liked this game, keep in touch of the latest update by using the CVS version of the game (see website address below).
--If you really liked this game, a small feedback will give us a lot of courage.
 
-For more information, feedback or feature request about the game, go to <http://freesiege.sourceforge.net/>.
+-If you liked this game, a small feedback will give us a lot of courage.
+
+For more information, feedback or feature request about the game, go to <http://github.com/MCMic/freesiege>.
