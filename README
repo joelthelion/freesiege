@@ -1,7 +1,9 @@
 This is FREESIEGE game.
 
 Every source file in this archive is distributed under the GPL (GNU Public Licence) and Coyrighted (c) 2007 Pierre Gueth <pierregueth@users.sourceforge.net> and Joel Schaerer <joelschaerer@users.sourceforge.net>.
-Every music or sound file in this archive is distributed under the Creative Commons "Paternité-Pas d'Utilisation Commerciale-Partage" and Coyrighted (c)2007 Charles Virot <interlagos21@users.sourceforge.net>.
+See sounds/license for the music licenses.
+The image sprite/veteran.bmp is under GPLv2, from here : http://opengameart.org/content/imperial-guard
+Its source is in xcf/veteran.xcf
 The font Swift is under GPLv2.
 
 To build to binaries:
