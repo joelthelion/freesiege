@@ -234,24 +234,24 @@ void TrainingScreen::display_game(SDL_Surface *screen) {
                     perfect_sprite.draw((SCREEN_W-perfect_sprite.w)/2,60+score_sprite.h);
                     if (ko) {
                         ko_sprite.draw((SCREEN_W-ko_sprite.w)/2,70+score_sprite.h+perfect_sprite.h);
-                        current_hand->draw(SCREEN_W/2-current_hand->w/2-160,80+score_sprite.h+perfect_sprite.h+current_skull->h);
-                        current_hand->draw(SCREEN_W/2-current_hand->w/2,80+score_sprite.h+perfect_sprite.h+current_skull->h);
-                        current_hand->draw(SCREEN_W/2-current_hand->w/2+160,80+score_sprite.h+perfect_sprite.h+current_skull->h);
+                        current_hand->draw(SCREEN_W/2-current_hand->w/2-160,(SCREEN_H-current_hand->h)/2+perfect_sprite.h);
+                        current_hand->draw(SCREEN_W/2-current_hand->w/2,(SCREEN_H-current_hand->h)/2+perfect_sprite.h);
+                        current_hand->draw(SCREEN_W/2-current_hand->w/2+160,(SCREEN_H-current_hand->h)/2+perfect_sprite.h);
                     }
                     else
                       {
-                        current_hand->draw(SCREEN_W/2-current_hand->w/2-80,80+score_sprite.h+perfect_sprite.h+current_skull->h);
-                        current_hand->draw(SCREEN_W/2-current_hand->w/2+80,80+score_sprite.h+perfect_sprite.h+current_skull->h);
+                        current_hand->draw(SCREEN_W/2-current_hand->w/2-80,(SCREEN_H-current_hand->h)/2+perfect_sprite.h);
+                        current_hand->draw(SCREEN_W/2-current_hand->w/2+80,(SCREEN_H-current_hand->h)/2+perfect_sprite.h);
                       }
                   }
                 else if (ko)
                   {
                     ko_sprite.draw((SCREEN_W-ko_sprite.w)/2,70+score_sprite.h+perfect_sprite.h);
-                    current_hand->draw(SCREEN_W/2-current_hand->w/2-80,80+score_sprite.h+perfect_sprite.h+current_skull->h);
-                    current_hand->draw(SCREEN_W/2-current_hand->w/2+80,80+score_sprite.h+perfect_sprite.h+current_skull->h);
+                    current_hand->draw(SCREEN_W/2-current_hand->w-ko_sprite.w/2,(SCREEN_H-current_hand->h)/2+perfect_sprite.h);
+                    current_hand->draw(SCREEN_W/2+ko_sprite.w/2,(SCREEN_H-current_hand->h)/2+perfect_sprite.h);
                   }
                 else
-                    current_hand->draw(SCREEN_W/2-current_hand->w/2,(SCREEN_H-current_hand->h)/2);
+                    current_hand->draw(SCREEN_W/2-current_hand->w/2,(SCREEN_H-current_hand->h)/2+perfect_sprite.h);
 			}
 
 			SDL_GL_SwapBuffers();

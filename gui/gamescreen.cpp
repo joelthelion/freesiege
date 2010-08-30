@@ -179,11 +179,11 @@ void GameScreen::display_game(SDL_Surface *screen) {
 			const Sprite* current_skull=skull.get_next_bitmap();
 			const Sprite* current_hand=hand.get_next_bitmap();
 			if (winner==PLAYER_2) {
-				current_skull->draw(SCREEN_W/2-score_sprite.w/2-80-current_skull->w/2,(SCREEN_H-current_skull->h)/2);
-				current_hand->draw(SCREEN_W/2+score_sprite.w/2+80-current_skull->w/2,(SCREEN_H-current_skull->h)/2);
+				current_skull->draw(SCREEN_W/2-score_sprite.w/2-current_skull->w,(SCREEN_H-current_skull->h)/2+10);
+				current_hand->draw(SCREEN_W/2+score_sprite.w/2,(SCREEN_H-current_hand->h)/2+10);
 			} else {
-				current_hand->draw(SCREEN_W/2-score_sprite.w/2-80-current_skull->w/2,(SCREEN_H-current_skull->h)/2);
-				current_skull->draw(SCREEN_W/2+score_sprite.w/2+80-current_skull->w/2,(SCREEN_H-current_skull->h)/2);
+				current_hand->draw(SCREEN_W/2-score_sprite.w/2-current_hand->w,(SCREEN_H-current_hand->h)/2+10);
+				current_skull->draw(SCREEN_W/2+score_sprite.w/2,(SCREEN_H-current_skull->h)/2+10);
 			}
 
 			SDL_GL_SwapBuffers();
