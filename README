@@ -11,9 +11,11 @@ Following files are under both GPLv2+ and CC-BY-SA, copyrighted Côme BERNIGAUD 
 #	modified:   sprites/title/siege.bmp
 #	xcf/free.xcf
 #	xcf/siege.xcf
+#	modified:   sprites/title/foreground.bmp
 
 Following files are under both GPLv2+ and CC-BY-SA, copyrighted Grégoire BERNIGAUD :
 #	modified:   sprites/title/castle.bmp
+#	modified:   sprites/castle.bmp
 #	xcf/castle.png
 #	modified:   xcf/castle.xcf
 Based on these files by tidbit:

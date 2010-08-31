@@ -24,7 +24,7 @@
 #define MENUSCREEN_BASE_X 0
 #define MENUSCREEN_FREE_FRAME_COUNT 15
 #define MENUSCREEN_SIEGE_FRAME_COUNT 30
-#define MENUSCREEN_SWORD_FRAME_COUNT 55
+//~ #define MENUSCREEN_SWORD_FRAME_COUNT 55
 #define MENUSCREEN_DELAY 5
 
 #define D_SHIFT 0.008;
@@ -81,7 +81,7 @@ bool MenuScreen::display_menu(SDL_Surface *screen,SELECTION &selection) {
 	//logo sprites
 	const Sprite *logo_free=spr_coll->get_sprite("logo_free");
 	const Sprite *logo_siege=spr_coll->get_sprite("logo_siege");
-	const Sprite *logo_sword=spr_coll->get_sprite("logo_sword");
+	//~ const Sprite *logo_sword=spr_coll->get_sprite("logo_sword");
 	//background sprites
 	const Sprite *back_hill=spr_coll->get_sprite("title_foreground");
 	const Sprite *back_castle=spr_coll->get_sprite("title_castle");
