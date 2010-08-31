@@ -70,7 +70,7 @@ int main(int argc, char* argv[]) {
 		std::cerr<<"video init failed..."<<std::endl;
 		return 1;
 	}
-	SDL_WM_SetCaption("FrEEsIegE",NULL);
+	SDL_WM_SetCaption("FreeSiege",NULL);
 	SDL_ShowCursor(SDL_DISABLE);
 	TextureIds texture_ids=init_opengl(screen->w,screen->h,N_TEXTURE);
 
