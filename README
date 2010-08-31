@@ -2,11 +2,25 @@ This is FREESIEGE game.
 
 Every source file in this archive is distributed under the GPL (GNU Public Licence) and Coyrighted (c) 2007 Pierre Gueth <pierregueth@users.sourceforge.net> and Joel Schaerer <joelschaerer@users.sourceforge.net>.
 See sounds/license for the music licenses.
-Followinf file are under both GPLv2+ and CC-BY-SA, copyrighted Côme BERNIGAUD :
+Following files are under both GPLv2+ and CC-BY-SA, copyrighted Côme BERNIGAUD :
 #	modified:   sprites/any.bmp
 #	modified:   sprites/units/druid.bmp
 #	modified:   sprites/select.bmp
 #	modified:   xcf/druid_unit.xcf
+#	modified:   sprites/title/free.bmp
+#	modified:   sprites/title/siege.bmp
+#	xcf/free.xcf
+#	xcf/siege.xcf
+
+Following files are under both GPLv2+ and CC-BY-SA, copyrighted Grégoire BERNIGAUD :
+#	modified:   sprites/title/castle.bmp
+#	xcf/castle.png
+#	modified:   xcf/castle.xcf
+
+Following files are under both GPLv2+ and CC-BY-SA, copyrighted jastew78 :
+#	xcf/chain.gif
+http://opengameart.org/content/chain-tiles
+
 
 
 Following files are under GPLv2 : 
@@ -23,6 +37,9 @@ Following files are under GPLv2 :
 #	modified:   sprites/units/flame.bmp
 #	modified:   sprites/veteran.bmp
 #	modified:   sprites/wood.bmp
+sprites/plant.bmp
+sprites/ram.bmp
+
 Sources are here : 
 #	new file:   xcf/blank110x110.bmp
 #	new file:   xcf/blank110x350.bmp
@@ -41,6 +58,8 @@ Sources are here :
 (for the layer with flowers, please see marion.bmp bellow)
 #	new file:   xcf/units_110x350.xcf
 #	new file:   xcf/units_50x110.xcf
+#	new file:   xcf/units_50x230.xcf
+
 http://opengameart.org/content/magic-and-mechanic-game-interface-icons for backgrounds and wood/fire/steel/magic icons
 
 The following file is waiting to be licensed, please don't redistribue it before the problem is solved (it use both LGPL and CC-BY-SA sources, which aren't mixable)

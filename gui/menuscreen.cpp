@@ -20,8 +20,8 @@
 #include "param.h"
 #include "options.h"
 
-#define MENUSCREEN_BASE_Y 150
-#define MENUSCREEN_BASE_X 70
+#define MENUSCREEN_BASE_Y 0
+#define MENUSCREEN_BASE_X 0
 #define MENUSCREEN_FREE_FRAME_COUNT 15
 #define MENUSCREEN_SIEGE_FRAME_COUNT 30
 #define MENUSCREEN_SWORD_FRAME_COUNT 55
@@ -101,9 +101,9 @@ bool MenuScreen::display_menu(SDL_Surface *screen,SELECTION &selection) {
 		shift-=D_SHIFT;
 		if (shift<0) shift=0;
 
-		draw_fadein(logo_sword,(SCREEN_W-logo_sword->w)/2,MENUSCREEN_BASE_Y-logo_sword->h/2-4,frame_count,MENUSCREEN_SWORD_FRAME_COUNT,30,4);
-		draw_fadein(logo_free,MENUSCREEN_BASE_X,MENUSCREEN_BASE_Y-logo_free->h/2,frame_count,MENUSCREEN_FREE_FRAME_COUNT,MENUSCREEN_DELAY);
-		draw_fadein(logo_siege,SCREEN_W-logo_siege->w-MENUSCREEN_BASE_X,MENUSCREEN_BASE_Y-logo_siege->h/2,frame_count,MENUSCREEN_SIEGE_FRAME_COUNT,MENUSCREEN_DELAY);
+		//draw_fadein(logo_sword,(SCREEN_W-logo_sword->w)/2,MENUSCREEN_BASE_Y-logo_sword->h/2-4,frame_count,MENUSCREEN_SWORD_FRAME_COUNT,30,4);
+		draw_fadein(logo_free,MENUSCREEN_BASE_X,MENUSCREEN_BASE_Y,frame_count,MENUSCREEN_FREE_FRAME_COUNT,MENUSCREEN_DELAY);
+		draw_fadein(logo_siege,SCREEN_W-logo_siege->w-MENUSCREEN_BASE_X,MENUSCREEN_BASE_Y,frame_count,MENUSCREEN_SIEGE_FRAME_COUNT,MENUSCREEN_DELAY);
 		current_menu->draw();
 		SDL_GL_SwapBuffers();
 		SDL_Flip(screen);
