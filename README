@@ -2,6 +2,13 @@ This is FREESIEGE game.
 
 Every source file in this archive is distributed under the GPL (GNU Public Licence) and Coyrighted (c) 2007 Pierre Gueth <pierregueth@users.sourceforge.net> and Joel Schaerer <joelschaerer@users.sourceforge.net>.
 See sounds/license for the music licenses.
+Followinf file are under both GPLv2+ and CC-BY-SA, copyrighted Côme BERNIGAUD :
+#	modified:   sprites/any.bmp
+#	modified:   sprites/units/druid.bmp
+#	modified:   sprites/select.bmp
+#	modified:   xcf/druid_unit.xcf
+
+
 Following files are under GPLv2 : 
 #	new file:   anims/final_screen/echec00.bmp
 #	new file:   anims/final_screen/success00.bmp
@@ -10,11 +17,9 @@ Following files are under GPLv2 :
 #	modified:   sprites/fire.bmp
 #	modified:   sprites/knight.bmp
 #	modified:   sprites/magic.bmp
-#	modified:   sprites/select.bmp
 #	modified:   sprites/soldier.bmp
 #	modified:   sprites/steel.bmp
 #	modified:   sprites/units/ball.bmp
-#	modified:   sprites/units/druid.bmp
 #	modified:   sprites/units/flame.bmp
 #	modified:   sprites/veteran.bmp
 #	modified:   sprites/wood.bmp
@@ -25,7 +30,6 @@ Sources are here :
 #	new file:   xcf/blank50x110.bmp
 #	new file:   xcf/blank50x230.bmp
 #	new file:   xcf/cavalryman.png
-#	modified:   xcf/druid_unit.xcf
 #	new file:   xcf/fire-breath-ne-3.png
 #	new file:   xcf/fireball-nw-2.png
 #	new file:   xcf/heavy-infantry.png
